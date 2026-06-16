@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sensitive Room: Haus of K · Internal Brief / 내부 브리프</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='6' fill='%23000000'/%3E%3Crect x='9' y='8' width='14' height='16' rx='2' fill='%23FFFFFF'/%3E%3Crect x='9' y='8' width='3' height='16' fill='%2312713A'/%3E%3C/svg%3E">
+<style>
+:root{
+  --green:#12713A; --green-deep:#0D572C; --green-tint:rgba(18,113,58,.07); --green-line:rgba(18,113,58,.35);
+  --ink:#000; --paper:#fff; --muted:rgba(0,0,0,.6); --faint:rgba(0,0,0,.42); --line:rgba(0,0,0,.12); --line-2:rgba(0,0,0,.22);
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Apple SD Gothic Neo","Pretendard","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --disp:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Pretendard","Segoe UI",Roboto,sans-serif;
+  --r:16px;--sh:0 16px 40px rgba(0,0,0,.09),0 2px 6px rgba(0,0,0,.04);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#f6f7f6;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.66;-webkit-font-smoothing:antialiased}
+[data-lang="ko"] .en{display:none}
+[data-lang="en"] .ko{display:none}
+.wrap{max-width:880px;margin:0 auto;padding:0 clamp(18px,4vw,32px)}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:rgba(246,247,246,.86);backdrop-filter:saturate(160%) blur(16px);-webkit-backdrop-filter:saturate(160%) blur(16px);border-bottom:1px solid var(--line)}
+.bar-in{max-width:880px;margin:0 auto;padding:13px clamp(18px,4vw,32px);display:flex;align-items:center;gap:14px}
+.mk{font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:-.01em;white-space:nowrap}
+.mk .o{color:var(--green)} .mk .hk{color:var(--muted);font-weight:400}
+.tagpill{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);border:1px solid var(--green-line);border-radius:100px;padding:4px 10px;white-space:nowrap}
+.langtoggle{margin-left:auto;display:inline-flex;border:1px solid var(--line-2);border-radius:100px;overflow:hidden;font-weight:600;font-size:13px}
+.langtoggle button{border:0;background:transparent;padding:8px 16px;cursor:pointer;color:var(--muted);font-family:var(--sans);font-weight:600}
+[data-lang="ko"] .langtoggle .l-ko,[data-lang="en"] .langtoggle .l-en{background:var(--green);color:#fff}
+
+/* hero */
+.hero{padding:clamp(34px,6vw,60px) 0 clamp(20px,3vw,30px)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
+h1{font-family:var(--disp);font-weight:600;font-size:clamp(30px,5vw,48px);line-height:1.06;letter-spacing:-.02em;margin:12px 0 0}
+.oneliner{font-size:clamp(16px,1.5vw,19px);color:var(--muted);margin-top:18px;max-width:680px}
+.oneliner b{color:var(--ink);font-weight:600}
+
+/* sections */
+.sec{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,34px);margin-top:18px;box-shadow:var(--sh)}
+.sec-k{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sec-k .ic{width:38px;height:38px;border-radius:10px;background:var(--green-tint);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.sec-k .ic svg{width:20px;height:20px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sec-k h2{font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.01em}
+.sec-k .num{font-family:var(--disp);font-weight:600;color:var(--faint);font-size:15px}
+.sec p{color:var(--muted);margin:0 0 4px}
+.sec p b,.row b,li b{color:var(--ink);font-weight:600}
+ul{list-style:none;margin:6px 0 0}
+li{position:relative;padding:7px 0 7px 22px;color:var(--muted);border-bottom:1px solid var(--line)}
+li:last-child{border-bottom:0}
+li::before{content:"";position:absolute;left:2px;top:15px;width:7px;height:7px;border-radius:2px;background:var(--green)}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:6px 16px;margin-top:6px}
+.kv .k{font-weight:600;color:var(--ink);font-size:14px}
+.kv .v{color:var(--muted);font-size:14.5px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.kv .k{padding-bottom:10px;border-bottom:1px solid var(--line)}
+.hl{color:var(--green);font-weight:700}
+
+/* roles split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.role{border:1px solid var(--line);border-radius:12px;padding:18px;border-top:3px solid var(--green)}
+.role .t{font-family:var(--disp);font-weight:600;font-size:16px;margin-bottom:8px}
+.role p{font-size:14px}
+
+/* directory */
+.dir{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.lk{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:var(--paper);transition:border-color .15s,transform .15s,box-shadow .15s;text-decoration:none;color:inherit}
+.lk:hover{border-color:var(--green-line);transform:translateY(-2px);box-shadow:var(--sh)}
+.lk .ic{width:42px;height:42px;border-radius:11px;background:var(--green);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.lk .ic svg{width:21px;height:21px;fill:#fff}
+.lk .tx{min-width:0}
+.lk .nm{font-family:var(--disp);font-weight:600;font-size:15px;letter-spacing:-.01em}
+.lk .ds{font-size:12.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lk .go{margin-left:auto;color:var(--faint);font-weight:700}
+.lk:hover .go{color:var(--green)}
+
+.note{color:var(--faint);font-size:12.5px;line-height:1.6;margin-top:22px;padding:16px 18px;border:1px dashed var(--line-2);border-radius:12px}
+.foot{text-align:center;color:var(--faint);font-size:12px;padding:30px 0 50px;letter-spacing:.04em}
+
+@media (max-width:640px){
+  .split,.dir{grid-template-columns:1fr}
+  .kv{grid-template-columns:108px 1fr}
+  .bar .tagpill{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-in">
+    <span class="mk">Sensitive R<span class="o">oo</span>m<span class="hk"> : Haus of K</span></span>
+    <span class="tagpill"><span class="ko">내부 공유용</span><span class="en">Internal</span></span>
+    <span class="langtoggle">
+      <button class="l-ko" onclick="setLang('ko')">한국어</button>
+      <button class="l-en" onclick="setLang('en')">EN</button>
+    </span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="eyebrow"><span class="ko">프로젝트 브리프 · Vol. I · 2026</span><span class="en">Project brief · Vol. I · 2026</span></div>
+    <h1><span class="ko">Sensitive Room: Haus of K</span><span class="en">Sensitive Room: Haus of K</span></h1>
+    <p class="oneliner">
+      <span class="ko"><b>뷰티에 진입하고 싶은 크리에이터</b>가 네트워크·딜·노하우를 얻어가는, <b>브랜드 스폰서 기반 무료 워크샵</b>. Sensitive Ones Agency × Haus of K 공동 운영, 대성 가이드.</span>
+      <span class="en">A <b>free, brand-sponsored workshop</b> where <b>creators step into K-beauty</b> and gain network, deals, and knowledge. Co-run by Sensitive Ones Agency × Haus of K, guided by Daesung Seo.</span>
+    </p>
+  </header>
+
+  <!-- CONCEPT -->
+  <section class="sec">
+    <div class="sec-k"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l2.5 5 5.5.8-4 4 1 5.4L12 20l-5 2.6 1-5.4-4-4 5.5-.8z"/></svg></span><span class="num">01</span><h2><span class="ko">컨셉</span><span class="en">Concept</span></h2></div>
+    <p class="ko">이미 뷰티에서 자리잡은 사람이 아니라, <b>잠재력 있는 새로운 크리에이터</b>를 발굴해 가까이서 함께 키우고, <b>양사의 지속적인 공동 네트워크</b>로 들입니다. 이름 자체가 구조를 말합니다: <b>Haus = 누리, Room = 센서티브원즈</b>, 어느 쪽도 가려지지 않는 50:50.</p>
+    <p class="en">We find and develop <b>rising creators with real potential</b> (not already-established beauty creators), work closely with them, and bring them into a <b>shared, lasting network across both partners</b>. The name encodes the structure: <b>Haus = Nurilounge, Room = Sensitive Ones</b>, a 50:50 where neither brand is swallowed.</p>
+  </section>
+
+  <!-- PROGRAM -->
+  <section class="sec">
+    <div class="sec-k"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></span><span class="num">02</span><h2><span class="ko">프로그램 / 구조</span><span class="en">Program / Structure</span></h2></div>
+    <ul class="ko">
+      <li><b>구조:</b> 오프라인 워크샵 (Sensitive Room @ Haus of K, 브루클린) → 디스코드 (온라인 커뮤니티 · 애프터케어)</li>
+      <li><b>규모:</b> 워크샵 1회 50명, 총 2~4회 · <b>격주로 네트워크 풀 교체</b> (누리 ~150 ↔ 센서티브원즈 ~150)</li>
+      <li><b>크리에이터:</b> 스폰서 브랜드용 오가닉 포트폴리오 영상 <b>3개</b> 제작 + 대성·누리 직접 피드백 → 세션당 ~150개 콘텐츠</li>
+      <li><b>퍼널:</b> 대성 인사이트 워크샵 → 포트폴리오 → 브랜드 딜 (스킨케어/뷰티)</li>
+      <li><b>참여:</b> 크리에이터 무료 (브랜드가 스폰서)</li>
+    </ul>
+    <ul class="en">
+      <li><b>Structure:</b> in-person workshop (Sensitive Room @ Haus of K, Brooklyn) → Discord (online community · after-care)</li>
+      <li><b>Scale:</b> 50 creators per workshop, run 2–4× · <b>network pool swaps biweekly</b> (Nuri ~150 ↔ Sensitive Ones ~150)</li>
+      <li><b>Creators:</b> make <b>3</b> organic portfolio videos for the sponsor brand + direct feedback from Daesung &amp; Nuri → ~150 contents per session</li>
+      <li><b>Funnel:</b> Daesung's insight workshop → portfolio → brand deal (skincare/beauty)</li>
+      <li><b>Cost:</b> free for creators (brand-sponsored)</li>
+    </ul>
+  </section>
+
+  <!-- DEAL -->
+  <section class="sec">
+    <div class="sec-k"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 8l8-4 8 4-8 4-8-4zM4 8v8l8 4 8-4V8"/></svg></span><span class="num">03</span><h2><span class="ko">딜 / 수익 구조</span><span class="en">The Deal</span></h2></div>
+    <ul class="ko">
+      <li>크리에이터 무료 · 브랜드가 스폰서</li>
+      <li><b>브랜드 가치:</b> 세션당 50명 × 3개 = <b>~150개 오가닉 콘텐츠</b> + 이후 추가 딜 연결</li>
+      <li><b>보장 딜:</b> 50명 중 일부에게 100% 딜 보장 (성과·스타일·브랜드핏 기준 선발)</li>
+      <li><b>커미션:</b> Haus of K : Sensitive Ones = <span class="hl">50:50</span> (통상 20%의 50:50, 또는 20~25%)</li>
+      <li><b>우리가 얻는 것:</b> 네트워크 · 콘텐츠 · 딜</li>
+    </ul>
+    <ul class="en">
+      <li>Free for creators · brand-sponsored</li>
+      <li><b>Brand value:</b> 50 creators × 3 = <b>~150 organic contents</b> per session + follow-on deals</li>
+      <li><b>Guaranteed deals:</b> a selected portion of the 50 get 100% brand deals (scored on performance, style, brand-fit)</li>
+      <li><b>Commission:</b> Haus of K : Sensitive Ones = <span class="hl">50:50</span> (of the usual ~20%, or 20–25%)</li>
+      <li><b>What we gain:</b> network · content · deals</li>
+    </ul>
+  </section>
+
+  <!-- ROLES -->
+  <section class="sec">
+    <div class="sec-k"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 5-5M13 18c.4-2.2 2.2-3.6 4-3.6"/></svg></span><span class="num">04</span><h2><span class="ko">역할 분담</span><span class="en">Roles</span></h2></div>
+    <div class="split">
+      <div class="role"><div class="t">Sensitive Ones</div><p class="ko">크리에이터 사이드: 모집·선발, 대성 코칭·커리큘럼, 콘텐츠·BTS, 로스터·커뮤니티 컬처</p><p class="en">Creator side: recruit/select, Daesung coaching &amp; curriculum, content/BTS, roster &amp; community culture</p></div>
+      <div class="role"><div class="t">Haus of K (Nurilounge)</div><p class="ko">브랜드·하우스 사이드: 스폰서 브랜드, Hana House venue, 기존 커뮤니티·푸트트래픽, 오프라인 어필리에이트</p><p class="en">Brand + house side: sponsor brands, Hana House venue, existing community &amp; foot-traffic, offline affiliate</p></div>
+    </div>
+    <p style="margin-top:14px"><span class="ko"><b>대성 Seo</b> = 가이드 / 호스트 (인사이트 · 직접 피드백 · 뷰티로 가는 문). 2.5M 팔로워.</span><span class="en"><b>Daesung Seo</b> = guide / host (insight · direct feedback · the door into beauty). 2.5M followers.</span></p>
+  </section>
+
+  <!-- DIRECTORY -->
+  <section class="sec">
+    <div class="sec-k"><span class="ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg></span><span class="num">05</span><h2><span class="ko">디렉토리 / 링크</span><span class="en">Directory / Links</span></h2></div>
+    <div class="dir">
+      <a class="lk" href="https://sensitive-room.vercel.app/" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20"/></svg></span>
+        <span class="tx"><div class="nm"><span class="ko">웹사이트</span><span class="en">Website</span></div><div class="ds">sensitive-room.vercel.app</div></span><span class="go">→</span>
+      </a>
+      <a class="lk" href="https://www.instagram.com/sensitiveroom.hausofk/" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.17.4.36 1 .42 2.2.07 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.25 1.8-.42 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.17-1 .36-2.2.42-1.3.07-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-1.8-.25-2.2-.42-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.17-.4-.36-1-.42-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.25-1.8.42-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.17 1-.36 2.2-.42C8.4 2.2 8.8 2.2 12 2.2zm0 8a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6zm5-2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/></svg></span>
+        <span class="tx"><div class="nm">Instagram</div><div class="ds">@sensitiveroom.hausofk</div></span><span class="go">→</span>
+      </a>
+      <a class="lk" href="https://linktr.ee/sensitiveroom.hausofk" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v8M12 11l5-3M12 11l-5-3M9 21h6M12 11v10"/></svg></span>
+        <span class="tx"><div class="nm">Linktree</div><div class="ds">linktr.ee/sensitiveroom.hausofk</div></span><span class="go">→</span>
+      </a>
+      <a class="lk" href="https://tally.so/r/81E2a5" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 9h8M8 13h8M8 17h5"/></svg></span>
+        <span class="tx"><div class="nm"><span class="ko">지원서 (Tally)</span><span class="en">Application (Tally)</span></div><div class="ds">tally.so/r/81E2a5</div></span><span class="go">→</span>
+      </a>
+      <a class="lk" href="https://docs.google.com/spreadsheets/d/1_F47gd3rQ1yVrwUIEZjHthGXBn6IOqIK4j8GM6VtPyk/edit?usp=sharing" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 3h9l5 5v13H5zM14 3v5h5M8 13h8M8 17h8M8 13v4"/></svg></span>
+        <span class="tx"><div class="nm"><span class="ko">크리에이터 DB (Sheets)</span><span class="en">Creator DB (Sheets)</span></div><div class="ds">Google Sheets</div></span><span class="go">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- OPEN DECISIONS -->
+  <section class="sec">
+    <div class="sec-k"><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0"/></svg></span><span class="num">06</span><h2><span class="ko">함께 정할 것</span><span class="en">Decide together</span></h2></div>
+    <ul class="ko">
+      <li>보장 딜 인원 + 선발 기준 가중치 (성과 / 스타일 / 브랜드핏)</li>
+      <li>코호트 · 네트워크 풀 규모 확정 (50 확정 / 풀 150 미정)</li>
+      <li>워크샵 횟수 · 일정 (2~4회)</li>
+      <li>프로젝트명 순서 (Sensitive Room : Haus of K)</li>
+      <li>디스코드 운영 · 모더레이션 주체</li>
+    </ul>
+    <ul class="en">
+      <li>Number of guaranteed deals + scoring weights (performance / style / brand-fit)</li>
+      <li>Cohort &amp; network-pool sizes (50 firm / 150 pools TBD)</li>
+      <li>Workshop cadence (2–4 runs)</li>
+      <li>Project name order (Sensitive Room : Haus of K)</li>
+      <li>Discord ops &amp; moderation owner</li>
+    </ul>
+  </section>
+
+  <div class="note">
+    <span class="ko"><b>연락 / Contact:</b> Instagram DM <b>@sensitiveroom.hausofk</b> · 본 문서는 Nurilounge × Sensitive Ones Agency 내부 공유용입니다. 외부 공개·재배포 금지.</span>
+    <span class="en"><b>Contact:</b> Instagram DM <b>@sensitiveroom.hausofk</b> · This document is for internal sharing between Nurilounge × Sensitive Ones Agency only. Not for public distribution.</span>
+  </div>
+
+  <div class="foot">Sensitive Room: Haus of K · Internal Brief · Vol. I · 2026</div>
+</div>
+
+<script>
+function setLang(l){ document.documentElement.setAttribute('data-lang', l); document.documentElement.setAttribute('lang', l); try{localStorage.setItem('sr-lang', l);}catch(e){} }
+try{ var s=localStorage.getItem('sr-lang'); if(s) setLang(s); }catch(e){}
+</script>
+</body>
+</html>
