@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensitive Room · IG Poster</title>
+<style>
+:root{
+  --green:#12713A;--green-deep:#0D572C;--ink:#000;--paper:#fff;--muted:rgba(0,0,0,.55);--faint:rgba(0,0,0,.4);--line:rgba(0,0,0,.12);
+  --disp:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#e9eae9;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center;font-family:var(--sans)}
+/* fixed 1080x1350 IG portrait, scaled to fit (export at full res) */
+.poster{position:absolute;top:50%;left:50%;width:1080px;height:1350px;transform-origin:center;background:var(--paper);overflow:hidden;display:flex;flex-direction:column}
+.grid{position:absolute;inset:0;background-size:60px 60px;background-image:linear-gradient(rgba(0,0,0,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.028) 1px,transparent 1px);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 38%,#000 55%,transparent 100%)}
+.top{position:relative;flex:1;padding:84px 84px 0}
+.eyebrow{font-family:var(--sans);font-size:22px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:14px}
+.eyebrow::before{content:"";width:42px;height:2px;background:var(--green)}
+.h1{font-family:var(--disp);font-weight:600;font-size:158px;line-height:.94;letter-spacing:-.03em;margin-top:48px}
+.uw{position:relative;display:inline-block;color:var(--green)}
+.uw::after{content:"";position:absolute;left:-1%;right:-1%;bottom:-12px;height:24px;background:no-repeat center/100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 13' preserveAspectRatio='none'%3E%3Cpath d='M3 9 C 55 3 145 3 197 7' fill='none' stroke='%2312713A' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E")}
+.sub{font-size:34px;line-height:1.4;color:var(--muted);margin-top:56px;max-width:760px}
+.sub b{color:var(--ink);font-weight:600}
+.host{margin-top:40px;display:inline-flex;align-items:center;gap:14px;font-family:var(--disp);font-weight:600;font-size:28px}
+.host .dot{width:12px;height:12px;border-radius:50%;background:var(--green)}
+.pills{display:flex;gap:14px;margin-top:48px;flex-wrap:wrap}
+.pill{font-size:26px;font-weight:600;letter-spacing:.01em;padding:14px 28px;border-radius:100px;border:2px solid var(--ink)}
+.pill.g{background:var(--green);color:#fff;border-color:var(--green)}
+/* details strip */
+.meta{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--ink);margin:60px 84px 0}
+.meta .m{padding:30px 0}
+.meta .m:nth-child(odd){border-right:1px solid var(--line);padding-right:30px}
+.meta .m:nth-child(even){padding-left:30px}
+.meta .k{font-size:19px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+.meta .v{font-family:var(--disp);font-weight:600;font-size:36px;letter-spacing:-.01em;margin-top:8px;color:var(--ink)}
+/* green CTA band */
+.cta{background:var(--green);color:#fff;padding:54px 84px;display:flex;align-items:center;justify-content:space-between;gap:30px;margin-top:56px}
+.cta .l{font-family:var(--disp);font-weight:600;font-size:46px;letter-spacing:-.01em}
+.cta .l .s{display:block;font-size:24px;font-weight:500;opacity:.82;letter-spacing:.02em;margin-top:8px}
+.cta .h{font-family:var(--disp);font-weight:600;font-size:34px;text-align:right;white-space:nowrap}
+.cta .h .free{display:block;font-size:22px;opacity:.85;font-weight:500;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="poster" id="poster">
+  <div class="top">
+    <div class="grid"></div>
+    <div class="eyebrow">Sensitive Room × Haus of K · Brooklyn</div>
+    <div class="h1">Break into<br><span class="uw">beauty.</span></div>
+    <div class="sub">A <b>free, brand-sponsored workshop</b> for creators ready to step into skincare &amp; beauty: the network, the deals, the knowledge.</div>
+    <div class="host"><span class="dot"></span> Hosted by Daesung Seo · 2.5M</div>
+    <div class="pills"><span class="pill g">Network</span><span class="pill">Deals</span><span class="pill">Knowledge</span></div>
+  </div>
+
+  <!-- EDIT THESE: date / time -->
+  <div class="meta">
+    <div class="m"><div class="k">When</div><div class="v" id="when">[ DATE · TIME ]</div></div>
+    <div class="m"><div class="k">Where</div><div class="v">Haus of K · Brooklyn</div></div>
+  </div>
+
+  <div class="cta">
+    <div class="l">Apply now<span class="s">50 spots · selected by fit</span></div>
+    <div class="h">@sensitiveroom.hausofk<span class="free">Free to join · brands sponsor</span></div>
+  </div>
+</div>
+<script>
+/* ← EDIT: set the date/time, then screenshot/export the poster at 1080×1350 */
+var WHEN = 'Thu, Jun 25';   // workshop date LOCKED Jun 25, 2026; append time when set, e.g. 'Thu, Jun 25 · 6PM'
+if(WHEN){ document.getElementById('when').textContent = WHEN; }
+function fit(){ var s=Math.min(innerWidth/1080, innerHeight/1350); document.getElementById('poster').style.transform='translate(-50%,-50%) scale('+s+')'; }
+addEventListener('resize',fit); fit();
+</script>
+</body>
+</html>

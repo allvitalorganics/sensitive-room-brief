@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Sensitive Room · Discord Setup &amp; Operations Guide (v1)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='6' fill='%23000000'/%3E%3Crect x='9' y='8' width='14' height='16' rx='2' fill='%23FFFFFF'/%3E%3Crect x='9' y='8' width='3' height='16' fill='%2312713A'/%3E%3C/svg%3E">
+<style>
+:root{--green:#12713A;--green-deep:#0D572C;--ink:#000;--paper:#fff;--muted:rgba(0,0,0,.6);--faint:rgba(0,0,0,.45);--line:rgba(0,0,0,.12);--wash:rgba(18,113,58,.06);--wash2:rgba(18,113,58,.1);--disp:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:#eceeec;line-height:1.62;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:32px auto;background:var(--paper);box-shadow:0 1px 3px rgba(0,0,0,.06),0 12px 40px rgba(0,0,0,.06);border-radius:14px;overflow:hidden}
+.head{background:var(--green);color:#fff;padding:38px 48px 34px}
+.head .kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.head h1{font-family:var(--disp);font-weight:600;font-size:30px;letter-spacing:-.02em;margin-top:10px;line-height:1.16}
+.head .meta{margin-top:14px;font-size:13px;opacity:.88;display:flex;flex-wrap:wrap;gap:6px 18px}
+.body{padding:38px 48px 50px}
+.draftnote{margin:0 0 26px;padding:12px 16px;border:1px solid rgba(0,0,0,.14);border-radius:10px;background:var(--wash);font-size:12.5px;color:var(--muted)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:10px;margin:36px 0 12px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--green)}
+h2{font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.01em;margin:28px 0 10px}
+h3{font-family:var(--disp);font-weight:600;font-size:16px;margin:20px 0 6px}
+p{margin:10px 0}
+.lead{font-size:17px;color:var(--muted)}
+ul,ol{margin:10px 0 10px 22px}li{margin:6px 0}
+.summary{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:var(--wash);margin:18px 0}
+.summary h3{margin-top:0;color:var(--green-deep)}
+.callout{border-left:3px solid var(--green);background:var(--wash);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14.5px}
+.callout.warn{border-left-color:var(--ink);background:rgba(0,0,0,.045)}
+.callout .t{font-weight:700;color:var(--green-deep);display:block;margin-bottom:4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.callout.warn .t{color:var(--ink)}
+.edit{background:rgba(18,113,58,.14);border-bottom:1px solid var(--green);padding:0 3px;border-radius:3px;font-weight:600}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);font-weight:700;background:var(--wash)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px 36px;margin:26px 0 8px}
+.sig .f{border-top:1.5px solid var(--ink);padding-top:8px;font-size:13px;color:var(--muted)}
+.fine{font-size:12px;color:var(--faint);margin-top:8px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:4px 11px;border-radius:100px;border:1.5px solid var(--ink)}
+.pill.g{background:var(--green);color:#fff;border-color:var(--green)}
+.foot{padding:22px 48px 34px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+@media(max-width:640px){.head,.body,.foot{padding-left:24px;padding-right:24px}.sig{grid-template-columns:1fr}}
+@media print{body{background:#fff}.wrap{box-shadow:none;margin:0;border-radius:0;max-width:none}.head{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* doc-specific additions */
+.toc{border:1px solid var(--line);border-radius:12px;padding:18px 20px 14px;margin:6px 0 8px;background:var(--paper)}
+.toc h3{margin-top:0;color:var(--green-deep)}
+.toc ol{margin:8px 0 2px 20px;columns:2;column-gap:32px;font-size:14px}
+.toc li{margin:4px 0;break-inside:avoid}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+.toc a:hover{border-bottom-color:var(--green)}
+.glossbox{border:1px solid var(--line);border-radius:12px;padding:6px 20px 12px;margin:16px 0;background:var(--wash)}
+.glossbox dl{margin:4px 0}
+.glossbox dt{font-weight:700;color:var(--green-deep);margin-top:12px;font-size:14px}
+.glossbox dd{margin:2px 0 0;font-size:14px;color:var(--muted)}
+code,.chan,kbd{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:13px}
+.chan{background:rgba(0,0,0,.05);padding:1px 7px;border-radius:5px;color:var(--green-deep);white-space:nowrap}
+kbd{background:rgba(0,0,0,.05);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;color:var(--ink)}
+ol.steps{counter-reset:st;list-style:none;margin-left:0}
+ol.steps>li{counter-increment:st;position:relative;padding:8px 0 8px 40px;border-bottom:1px solid var(--line)}
+ol.steps>li:last-child{border-bottom:0}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:8px;width:26px;height:26px;background:var(--green);color:#fff;border-radius:7px;font-family:var(--disp);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+.path{display:inline-block;font-family:"SF Mono",Menlo,monospace;font-size:12.5px;background:rgba(0,0,0,.045);border:1px solid var(--line);border-radius:6px;padding:1px 8px;color:var(--green-deep);margin:1px 0}
+.maplist{list-style:none;margin-left:0}
+.maplist>li{padding:0;margin:14px 0;border-bottom:0}
+.cat{font-family:var(--disp);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);background:var(--wash);border-radius:7px;padding:6px 12px;display:inline-block;margin-bottom:4px}
+.maplist ul{list-style:none;margin:6px 0 6px 4px;border-left:2px solid var(--line);padding-left:16px}
+.maplist ul li{margin:5px 0;font-size:14.5px;color:var(--muted)}
+.gate{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--ink);border-radius:5px;padding:1px 7px;margin-left:4px}
+.gate.open{background:var(--green)}
+.src{font-size:13px;word-break:break-word}
+.src a{color:var(--green-deep)}
+.tick{color:var(--green);font-weight:700}.cross{color:var(--ink);font-weight:700}
+.checklist{list-style:none;margin-left:0;counter-reset:ck}
+.checklist>li{counter-increment:ck;position:relative;padding:9px 0 9px 38px;border-bottom:1px solid var(--line)}
+.checklist>li:last-child{border-bottom:0}
+.checklist>li::before{content:"";position:absolute;left:0;top:11px;width:20px;height:20px;border:2px solid var(--green);border-radius:5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="kicker">Sensitive Room · Haus of K</div>
+    <h1>Discord Setup &amp; Operations Guide</h1>
+    <div class="meta">
+      <span>Vol I · Chapter 01</span>
+      <span>Brooklyn</span>
+      <span>Draft v1</span>
+      <span>2026-06-18</span>
+      <span>For: Alex (zero Discord experience)</span>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="draftnote">
+      This is a DRAFT internal operations guide for the Sensitive Room program (co-run by Sensitive Ones Agency and Nurilounge), not an executed legal instrument and not legal advice. The Discord click-paths and feature behavior below match Discord's official support articles as of <span class="edit">2026-06-18</span>, but Discord changes its interface often: if a button is named differently on your screen, look for the nearest equivalent inside Server Settings. Membership terms, the name/likeness release, and the content-usage license that creators agree to live in the separate Sensitive Room Terms and Privacy drafts; have qualified counsel review those before anyone signs or joins, with specific attention to likeness/publicity rights, content licensing, and any participant under 18.
+    </div>
+
+    <p class="lead">This guide assumes you have never opened Discord. It walks you click-by-click from making an account to running the room day to day. Do the setup on a computer. Read section 12 first if you only have 30 minutes and need to go live today.</p>
+
+    <div class="toc">
+      <h3>What's in here</h3>
+      <ol>
+        <li><a href="#s1">What Discord is &amp; why we use it</a></li>
+        <li><a href="#s2">Account + app setup</a></li>
+        <li><a href="#s3">Create the server</a></li>
+        <li><a href="#s4">Turn on Community features</a></li>
+        <li><a href="#s5">Channel map</a></li>
+        <li><a href="#s6">Roles &amp; permissions</a></li>
+        <li><a href="#s7">Onboarding &amp; verification</a></li>
+        <li><a href="#s8">Getting creators in</a></li>
+        <li><a href="#s9">Content-submissions workflow</a></li>
+        <li><a href="#s10">Moderation &amp; safety</a></li>
+        <li><a href="#s11">Daily / weekly rhythm</a></li>
+        <li><a href="#s12">First 30 minutes checklist</a></li>
+        <li><a href="#s13">Sources</a></li>
+      </ol>
+    </div>
+
+    <!-- 1 -->
+    <div class="eyebrow" id="s1">01 · What Discord is &amp; why we use it</div>
+    <h2>The room behind the workshop</h2>
+    <p>Discord is a free app for running a private community. Think of it as a group chat that is organized into labeled rooms instead of one long thread, plus voice rooms you can drop into like a phone call. People join through one invite link and everything lives in one place.</p>
+    <p>We use it for three jobs, and only these three at the pilot:</p>
+    <ul>
+      <li><b>Community.</b> Accepted creators meet each other, introduce themselves, share wins, and stay in the network after the workshop day. This is what keeps a chapter alive into the next one.</li>
+      <li><b>Organized conversations.</b> The chapter brief, the brand briefs, logistics, and Q&amp;A each get their own channel, so nothing important gets buried in chat.</li>
+      <li><b>Content-submission intake.</b> Each accepted creator owes <span class="edit">3</span> organic pieces. They post the live links in one channel and Sensitive Room logs each one to the tracker. This is how we prove delivery to sponsoring brands.</li>
+    </ul>
+
+    <div class="glossbox">
+      <h3 style="color:var(--green-deep);font-family:var(--disp);margin:10px 0 0">Quick glossary (read once, refer back)</h3>
+      <dl>
+        <dt>Server</dt><dd>Your whole community space. Shows as an icon down the left edge. Ours will be named "Sensitive Room."</dd>
+        <dt>Channel</dt><dd>One room inside the server. Text channels (<code>#like-this</code>) are for typing; voice channels are for talking.</dd>
+        <dt>Category</dt><dd>A folder that groups related channels (for example an INFO folder holding several channels).</dd>
+        <dt>Role</dt><dd>A label you attach to a person, like @Roster or @Brand. Roles grant permissions and decide who can see which channels. This is the single most important concept for keeping deal channels private.</dd>
+        <dt>Thread</dt><dd>A side-conversation that branches off one message, so a long discussion does not flood the main channel.</dd>
+        <dt>DM</dt><dd>Direct message. A private one-to-one chat outside any server.</dd>
+        <dt>Voice channel</dt><dd>A room you click into to talk live, share screen, or host office hours. No call to schedule; people just join.</dd>
+        <dt>Onboarding</dt><dd>Discord's new-member flow. It greets people, asks a couple of questions, and routes them to the right channels when they first join.</dd>
+        <dt>AutoMod</dt><dd>Discord's built-in auto-moderation. It can block messages that contain banned words or spam before anyone sees them.</dd>
+      </dl>
+    </div>
+
+    <!-- 2 -->
+    <div class="eyebrow" id="s2">02 · Account + app setup</div>
+    <h2>Make your account first</h2>
+    <p>You can register from a browser, the desktop app, or the phone app. The fastest path is a browser on your computer, because you will do all the admin work on desktop anyway (some admin features do not exist on mobile).</p>
+
+    <h3>Desktop (browser or app)</h3>
+    <ol class="steps">
+      <li>Go to <code>discord.com</code> and click <b>Login</b>, then <b>Register</b>. (Or download the desktop app and register inside it.)</li>
+      <li>Enter your <b>Email</b>, then a <b>Display Name</b> (what people see), a <b>Username</b> (your unique handle), a <b>Password</b>, and your <b>Date of Birth</b>.</li>
+      <li>Solve the human-verification box if it appears, then submit.</li>
+      <li>Open the email Discord sends you and click <b>Verify Email</b>. Do this now, it is required before you can turn on Community in section 4.</li>
+    </ol>
+
+    <h3>Mobile (iOS / Android app)</h3>
+    <ol class="steps">
+      <li>Install <b>Discord</b> from the App Store or Google Play and open it.</li>
+      <li>Tap <b>Register</b>, enter your phone number or email, then set Display Name, Username, Password, Date of Birth.</li>
+      <li>Verify through the email link (or the SMS code if you registered by phone).</li>
+    </ol>
+
+    <div class="callout"><span class="t">Do this once</span>Turn on two-factor authentication (2FA) under <span class="path">User Settings &gt; My Account</span>. The owner account controls everything, so protect it. Discord's moderator features also expect a secured owner account.</div>
+
+    <!-- 3 -->
+    <div class="eyebrow" id="s3">03 · Create the server</div>
+    <h2>Build "Sensitive Room"</h2>
+    <p>Down the left sidebar there is a green <b>+</b> button labeled "Add a Server." Everything below starts there.</p>
+
+    <h3>Option A · From scratch (recommended for a first-timer)</h3>
+    <ol class="steps">
+      <li>Click the green <b>+</b> "Add a Server" icon in the left sidebar.</li>
+      <li>In the pop-up choose <b>Create My Own</b> (a blank slate), pick a purpose if it asks.</li>
+      <li>Enter the Server Name <b>Sensitive Room</b> and optionally upload a server icon (the <code>room.png</code> or poster art in this folder works).</li>
+      <li>Click <b>Create</b>. Your server now exists with one <span class="chan">#general</span> text channel, one General voice channel, and one role, @everyone. You will build the rest in section 5.</li>
+    </ol>
+
+    <h3>Option B · From a template (faster, one extra step)</h3>
+    <ol class="steps">
+      <li>Click the green <b>+</b> "Add a Server" icon, then choose a template (or paste a template link). You can preview it, rename it to <b>Sensitive Room</b>, and add an icon before creating.</li>
+      <li>A template clones categories, channels, roles, and permissions, so it is a head start.</li>
+    </ol>
+    <div class="callout warn"><span class="t">Template caveat</span>Creating a server FROM a template turns Community OFF and strips the Community-only features. Even if a template looks "community-ready," you must still run section 4 (Enable Community) afterward. For your first build, Option A is simpler to reason about.</div>
+    <p class="fine">Later, once your server is shaped the way you like, you can save it as your own reusable template via <span class="path">Server Settings &gt; Server Templates &gt; Generate Template</span> (desktop only, needs Manage Server) so Chapter 02 can clone it.</p>
+
+    <div class="callout"><span class="t">Set up on desktop</span>Do all the configuration on a computer. Community Onboarding in particular can only be set up on desktop or browser, not the phone app. Members can join and use the server from any device, it is only the admin setup that needs a computer.</div>
+
+    <!-- 4 -->
+    <div class="eyebrow" id="s4">04 · Turn on Community features</div>
+    <h2>Why this matters</h2>
+    <p>Enabling "Community" is the switch that unlocks the cohort-grade tools we need: <b>Onboarding</b>, the <b>Welcome Screen / Server Guide</b>, <b>Rules Screening</b> (members must agree to rules before they can talk), <b>AutoMod</b>, and <b>Announcement channels</b>. Without it, the server is just a basic chat. Turn it on before you invite anyone.</p>
+    <ol class="steps">
+      <li>Open <b>Server Settings</b> (click the server name at top-left, then <b>Server Settings</b>).</li>
+      <li>Find <b>Enable Community</b> and click <b>Get Started</b>, then follow the wizard.</li>
+      <li>The wizard enforces two safety defaults: members must have a <b>Verified Email</b> before they can talk or DM, and it turns on <b>media scanning</b> for all members. Leave both on.</li>
+      <li>Set the default notification setting to <b>Only @mentions</b> so a <span class="edit">50</span>-person cohort is not buried in pings.</li>
+      <li>The wizard asks you to designate a <b>Rules channel</b> and a <b>Community Updates channel</b> (where Discord sends you admin and moderation notices). Pick or create those, then finish.</li>
+    </ol>
+    <div class="callout warn"><span class="t">Do not confuse this with Discovery</span>"Enable Community" is what you want. "Enable Server Discovery" is a different, optional thing that publicly lists your server and needs roughly <span class="edit">1,000+</span> members and 8 weeks of age. We are a private, invite-only room, so never turn on Discovery.</div>
+
+    <!-- 5 -->
+    <div class="eyebrow" id="s5">05 · Channel map</div>
+    <h2>The structure to build</h2>
+    <p>Keep it lean for the pilot. The only public-facing layer is INFO; everything of value sits behind the @Roster role. The grouping below also satisfies Onboarding's rule that you need at least <span class="edit">7</span> default channels with at least <span class="edit">5</span> public ones (see section 7).</p>
+
+    <ul class="maplist">
+      <li>
+        <span class="cat">INFO</span> <span class="gate open">Public</span>
+        <ul>
+          <li><span class="chan">#welcome</span> · what this room is, in two lines</li>
+          <li><span class="chan">#rules</span> · the guidelines members must agree to (Rules Screening channel)</li>
+          <li><span class="chan">#start-here</span> · how to get your @Roster role and unlock the room</li>
+          <li><span class="chan">#announcements</span> · Announcement channel; admins post, members read</li>
+        </ul>
+      </li>
+      <li>
+        <span class="cat">COMMUNITY</span> <span class="gate">Roster</span>
+        <ul>
+          <li><span class="chan">#introductions</span> · everyone says who they are when they join</li>
+          <li><span class="chan">#general</span> · the main hangout chat for the cohort</li>
+          <li><span class="chan">#wins</span> · post published work and results</li>
+          <li><span class="chan">#ask-anything</span> · open Q&amp;A for the room and the team</li>
+        </ul>
+      </li>
+      <li>
+        <span class="cat">CHAPTER 01</span> <span class="gate">Roster</span>
+        <ul>
+          <li><span class="chan">#chapter-01-brief</span> · date, address (345 Adams St, Brooklyn), schedule, the assignment</li>
+          <li><span class="chan">#content-submissions</span> · drop your 3 organic-piece links here (see section 9)</li>
+          <li><span class="chan">#brand-briefs</span> · the sponsor brief, do's and don'ts, required tags and disclosure</li>
+        </ul>
+      </li>
+      <li>
+        <span class="cat">DEALS</span> <span class="gate">Roster + Admin</span>
+        <ul>
+          <li><span class="chan">#open-opportunities</span> · paid collabs and briefs posted by the team <span style="color:var(--green-deep);font-weight:600">(gated)</span></li>
+          <li><span class="chan">#deal-room</span> · where a selected creator and the team work out a specific paid deal <span style="color:var(--green-deep);font-weight:600">(gated)</span></li>
+        </ul>
+      </li>
+      <li>
+        <span class="cat">VOICE</span> <span class="gate">Roster</span>
+        <ul>
+          <li><span class="chan">Lounge</span> · drop-in voice room for the cohort</li>
+          <li><span class="chan">Office Hours</span> · where Daesung and the team go live for feedback sessions</li>
+        </ul>
+      </li>
+      <li>
+        <span class="cat">MOD-ONLY</span> <span class="gate">Admin + Host</span>
+        <ul>
+          <li><span class="chan">#mod-chat</span> · team back-channel</li>
+          <li><span class="chan">#automod-alerts</span> · where AutoMod posts its flags (set in section 10)</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="fine">To add a category: hover the channel sidebar and click <b>+</b> &gt; Create Category. To add a channel: hover a category, click its <b>+</b>, choose Text / Voice / Announcement, name it, create.</p>
+
+    <!-- 6 -->
+    <div class="eyebrow" id="s6">06 · Roles &amp; permissions</div>
+    <h2>Who sees what</h2>
+    <p>A <b>role</b> is a label on a person. A channel can be set so only certain roles see it. That is how <span class="chan">#deal-room</span> and <span class="chan">#open-opportunities</span> stay private. Create roles at <span class="path">Server Settings &gt; Roles &gt; Create Role</span>. New roles drop in just above @everyone; drag to reorder. Give each its own color and turn on "Display role members separately" so @Roster shows as its own group in the member list.</p>
+
+    <table>
+      <thead>
+        <tr><th>Role</th><th>Who</th><th>Can see</th><th>Key permissions</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>@Admin</b></td><td>Alex, Justin, Aram</td><td>Everything, including MOD-ONLY and DEALS</td><td>Administrator</td></tr>
+        <tr><td><b>@Host</b></td><td>Daesung</td><td>All cohort + DEALS + MOD-ONLY</td><td>Manage Messages, Mute/Move in voice, Timeout; not Administrator</td></tr>
+        <tr><td><b>@Brand</b></td><td>Sponsor reps</td><td>INFO + their <span class="chan">#brand-briefs</span> only; <b>not</b> DEALS, not other chapters</td><td>Read/send in their brief channel only</td></tr>
+        <tr><td><b>@Roster</b></td><td>Accepted creators</td><td>INFO + COMMUNITY + CHAPTER 01 + DEALS + VOICE</td><td>Standard send/react; no manage</td></tr>
+        <tr><td><b>@Alumni</b></td><td>Past-chapter creators</td><td>INFO + COMMUNITY (kept in the network); not current chapter or DEALS</td><td>Standard send/react</td></tr>
+        <tr><td><b>@Guest</b></td><td>Optional visitors</td><td>INFO only</td><td>Read; limited send</td></tr>
+        <tr><td><b>@everyone</b></td><td>Built-in baseline</td><td>INFO only; <b>denied</b> on all private categories</td><td>Minimal</td></tr>
+      </tbody>
+    </table>
+
+    <h3>How to make a channel private (permission overrides, in plain terms)</h3>
+    <p>A "permission override" is a per-channel rule that overrides the server-wide setting. You set it as a green check (allow) or a red X (deny).</p>
+    <ol class="steps">
+      <li>The smart move: set the override on the <b>CATEGORY</b>, not each channel. Hover the category &gt; gear (Edit) &gt; <b>Permissions</b>.</li>
+      <li>Select <b>@everyone</b> and set <b>View Channel</b> to the <span class="cross">red X</span> (deny).</li>
+      <li>Click <b>+</b>, add <b>@Roster</b> (and @Admin / @Host), set their <b>View Channel</b> to the <span class="tick">green check</span> (allow).</li>
+      <li>Have each channel inside <b>sync to the category</b> so it inherits the same Roster-only access automatically. Now any new channel you drop in that category is private by default.</li>
+    </ol>
+    <div class="callout warn"><span class="t">The one rule beginners get wrong</span>Channel permissions do <b>not</b> obey role hierarchy. If a person has <b>any</b> role that ALLOWS "View Channel," they can see the channel, even if another of their roles denies it. Any single allow wins. So never give @Guest or a broad role an "allow" on a private category. After setup, test with <span class="path">Server Settings &gt; Roles &gt; View Server As Role</span> to confirm a plain member cannot see DEALS.</div>
+    <p class="fine">Hierarchy still matters for managing people: you can only manage roles below your own and only grant permissions you already have. So keep @Admin at the top.</p>
+
+    <!-- 7 -->
+    <div class="eyebrow" id="s7">07 · Onboarding &amp; verification</div>
+    <h2>Greet new members and keep spam out</h2>
+
+    <h3>Verification level (anti-spam gate)</h3>
+    <p>At <span class="path">Server Settings &gt; Safety Setup &gt; Verification Level</span>, pick how much a new account must clear before it can chat:</p>
+    <table>
+      <thead><tr><th>Level</th><th>Requirement</th></tr></thead>
+      <tbody>
+        <tr><td>None</td><td>Chats immediately</td></tr>
+        <tr><td>Low</td><td>Verified email</td></tr>
+        <tr><td>Medium</td><td>Verified email + account at least 5 minutes old</td></tr>
+        <tr><td><b>High</b></td><td>The above + a member of this server for at least 10 minutes before chatting</td></tr>
+        <tr><td>Highest</td><td>Verified phone number on their account</td></tr>
+      </tbody>
+    </table>
+    <p>For an invite-only creator room, set <b>Medium</b> or <b>High</b>. A real invited creator will not mind a 10-minute wait, and it deters throwaway accounts.</p>
+
+    <h3>Rules Screening (must agree before participating)</h3>
+    <ol class="steps">
+      <li>Go to <span class="path">Server Settings &gt; Safety Setup &gt; Server Rules</span>.</li>
+      <li>Write the rules (or start from Discord's examples), then save. New members must explicitly agree before they can talk, react, or DM. Use the same <span class="chan">#rules</span> channel from your map.</li>
+    </ol>
+    <p class="fine">There is also an optional <b>Apply to Join</b> (Server Member Applications) feature, a form with custom questions before someone can even enter. Useful later if you want to vet creators by application. For Chapter 01, single-use invites (section 8) plus assigning @Roster by hand is enough.</p>
+
+    <h3>Community Onboarding (the welcome flow)</h3>
+    <p>At <span class="path">Server Settings &gt; Onboarding</span> (desktop only, needs Manage Server + Manage Roles). Requirements: pick at least <span class="edit">7</span> Default Channels, of which at least <span class="edit">5</span> let @everyone View and Send. Your INFO + COMMUNITY channels satisfy this; keep CHAPTER 01, DEALS, and VOICE out of the public defaults.</p>
+    <ul>
+      <li><b>Default Channels</b> · what a new member sees on joining. Put the public INFO and COMMUNITY channels here.</li>
+      <li><b>Questions</b> · short customization questions; an answer can grant extra channels or roles. Do <b>not</b> auto-grant @Roster here, that one you assign by hand after you confirm the person is accepted.</li>
+      <li><b>Server Guide</b> · a short welcome message and a to-do list for newcomers. Preview it as a new member, then Enable.</li>
+    </ul>
+
+    <h3>AutoMod basics</h3>
+    <p>At <span class="path">Server Settings &gt; AutoMod</span>, turn on at least the "Commonly Flagged Words" ready-made list and a "Custom Keyword" rule for anything you want blocked. For each rule, choose to Block the message and send an Alert to <span class="chan">#automod-alerts</span>. Admins and anyone with Manage Server are always exempt, so the team is never filtered. More in section 10.</p>
+
+    <!-- 8 -->
+    <div class="eyebrow" id="s8">08 · Getting creators in</div>
+    <h2>Invite, then assign the role</h2>
+
+    <h3>Create a controlled invite link</h3>
+    <ol class="steps">
+      <li>Hover a channel (use <span class="chan">#welcome</span>) and click <b>Create Invite</b>, or the invite icon.</li>
+      <li>Click <b>Edit invite link</b>. Set <b>Expire after</b> to <span class="edit">7 days</span> and <b>Max number of uses</b> to <span class="edit">1</span> for a single creator, so a link cannot be passed around.</li>
+      <li>Click <b>Generate a New Link</b> and send it to that creator (paste it into the acceptance email or form).</li>
+      <li>Revoke or manage any old links later at <span class="path">Server Settings &gt; Invites</span>.</li>
+    </ol>
+    <p class="fine">For a general cohort blast, you can instead make one link with a higher max-uses cap (for example <span class="edit">30</span>) and a short expiry. Single-use per person is tighter and is the better default for a curated roster.</p>
+
+    <h3>Assign @Roster when an accepted creator joins</h3>
+    <ol class="steps">
+      <li>Quick way: in the member list, <b>right-click the person &gt; Roles &gt;</b> check <b>Roster</b> (and a chapter role if you use one).</li>
+      <li>Or use <span class="path">Server Settings &gt; Members</span>, find the person, click <b>+</b> under Roles, check the role. The Members page also lets you filter by role to audit exactly who has @Roster access.</li>
+      <li>You need <b>Manage Roles</b> to do this, and you can only assign roles below your own, so do it from an @Admin or @Host account.</li>
+    </ol>
+
+    <!-- 9 -->
+    <div class="eyebrow" id="s9">09 · The content-submissions workflow</div>
+    <h2>How the 3 organic pieces get tracked</h2>
+    <p>Each accepted creator must publish <span class="edit">3</span> organic pieces (this is a condition of acceptance). They post the live links in <span class="chan">#content-submissions</span>, and Sensitive Room logs each one to the tracker. Pin the required format at the top of the channel so every submission is uniform.</p>
+
+    <div class="callout"><span class="t">Pin this in #content-submissions</span>
+      <b>SUBMISSION FORMAT (copy this, fill it in, one message per piece):</b><br>
+      Brand tagged: @brandhandle + @sensitiveroom.hausofk<br>
+      Link: (paste the live Reel / TikTok URL)<br>
+      Date published: YYYY-MM-DD<br>
+      FTC disclosed: YES (used #ad / #sponsored or the Paid-partnership label)<br>
+      Piece: 1 of 3 / 2 of 3 / 3 of 3
+    </div>
+
+    <h3>What counts (per the deal terms)</h3>
+    <ul>
+      <li>At least one in-feed short-form video per piece (Instagram Reel or TikTok is fine).</li>
+      <li>Must tag the brand handle <b>and</b> <span class="chan">@sensitiveroom.hausofk</span>.</li>
+      <li>Must carry a clear FTC material-connection disclosure: <code>#ad</code> or <code>#sponsored</code> or the platform's Paid-partnership label.</li>
+      <li>Timing: first piece within <span class="edit">14 days</span> of the workshop; all three within <span class="edit">30 days</span>.</li>
+    </ul>
+
+    <h3>How the team logs it</h3>
+    <ol class="steps">
+      <li>When a submission posts, react with a check emoji so the creator knows it landed and so you can see at a glance what is logged.</li>
+      <li>Open the tracker (Sheet / Notion) and add a row: creator, brand assigned, piece number, link, date, FTC = yes, logged-by.</li>
+      <li>Reply in a thread on their message if anything is missing (no tag, no disclosure) so the fix stays attached to the original post.</li>
+      <li>After all three are in and the 30-day window closes, Sensitive Room reviews who over-delivered and shortlists creators to link with brands for paid work.</li>
+    </ol>
+    <div class="callout warn"><span class="t">Why the format is strict</span>The tag and the FTC disclosure are not optional polish. The <span class="chan">@sensitiveroom.hausofk</span> tag is how we prove coverage to sponsors, and the disclosure is a legal requirement on sponsored content. A piece missing either one does not count toward the creator's <span class="edit">3</span>.</div>
+
+    <!-- 10 -->
+    <div class="eyebrow" id="s10">10 · Moderation &amp; safety</div>
+    <h2>Keep it clean and calm</h2>
+    <ul>
+      <li><b>AutoMod.</b> At <span class="path">Server Settings &gt; AutoMod</span>, keep the Commonly Flagged Words list on, add a Custom Keyword rule for anything specific, and turn on spam and mention-spam limits. Route alerts to <span class="chan">#automod-alerts</span>. You can also block banned words from being used in nicknames.</li>
+      <li><b>Reporting.</b> Anyone can right-click a message &gt; Report it to Discord. For in-house issues, members can ping @Host or @Admin or post in <span class="chan">#ask-anything</span>.</li>
+      <li><b>Timeout.</b> The soft tool. Right-click a member &gt; Timeout to mute them for a set period without removing them. Use this first for heat-of-the-moment problems.</li>
+      <li><b>Kick.</b> Removes a person; they can rejoin with a new invite. Use for a one-off who does not belong.</li>
+      <li><b>Ban.</b> Removes and blocks the account from returning. Use only for bad actors.</li>
+      <li><b>Stay organized.</b> Turn on Slow Mode in <span class="chan">#content-submissions</span> and <span class="chan">#open-opportunities</span> so they stay clean lists, not chat. Pin the important post at the top of each channel. Archive old chapter channels rather than deleting them.</li>
+    </ul>
+    <div class="callout"><span class="t">Add a second moderator</span>Before you open the doors, give @Host (Daesung) or one trusted teammate the moderator permissions (Manage Messages, Timeout, Kick, not Administrator). One person should not be the only one who can calm a channel.</div>
+
+    <!-- 11 -->
+    <div class="eyebrow" id="s11">11 · Daily / weekly rhythm</div>
+    <h2>What to post where, and when</h2>
+    <table>
+      <thead><tr><th>Cadence</th><th>Action</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>Daily (light)</td><td>Skim <span class="chan">#content-submissions</span>, react-check new posts, log them to the tracker; reply to anything in <span class="chan">#ask-anything</span></td><td>Submissions + Q&amp;A</td></tr>
+        <tr><td>Daily (light)</td><td>Glance at <span class="chan">#automod-alerts</span> and <span class="chan">#mod-chat</span></td><td>Mod-only</td></tr>
+        <tr><td>2-3× / week</td><td>Welcome and assign @Roster to newly accepted creators; nudge a hello in <span class="chan">#introductions</span></td><td>Members page + Intros</td></tr>
+        <tr><td>Weekly</td><td><b>One announcement</b> in <span class="chan">#announcements</span>: this week's focus, deadlines, office-hours time</td><td>Announcements</td></tr>
+        <tr><td>Weekly</td><td><b>Office Hours</b> in the <span class="chan">Office Hours</span> voice room. Daesung + team go live for feedback. Post the time in advance.</td><td>Voice</td></tr>
+        <tr><td>As it happens</td><td>Post new paid briefs in <span class="chan">#open-opportunities</span>; move a selected creator into <span class="chan">#deal-room</span></td><td>Deals</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><span class="t">Announcement discipline</span>Keep <span class="chan">#announcements</span> to roughly <span class="edit">1</span> post a week. With the default set to "Only @mentions," use <code>@Roster</code> sparingly, only when you genuinely need every creator to see it (a deadline, the office-hours time). Over-pinging is how communities go quiet.</div>
+    <p class="fine">Per-person, anyone can right-click the server icon &gt; Notification Settings to mute channels they do not need. Encourage creators to keep <span class="chan">#announcements</span> on and mute VOICE.</p>
+
+    <!-- 12 -->
+    <div class="eyebrow" id="s12">12 · First 30 minutes checklist</div>
+    <h2>The exact minimum to go live</h2>
+    <p>If you do only these, in order, the room is ready for your first creator. Everything else can be added later.</p>
+    <ol class="checklist">
+      <li>Create the account and <b>verify your email</b> (section 2).</li>
+      <li>Turn on 2FA on your account.</li>
+      <li>Create the server, named <b>Sensitive Room</b> (section 3, Option A).</li>
+      <li>Run <b>Enable Community</b> and finish the wizard; set default notifications to Only @mentions (section 4).</li>
+      <li>Create the categories INFO, COMMUNITY, CHAPTER 01, DEALS (section 5). VOICE and MOD-ONLY can wait.</li>
+      <li>Add the core channels: <span class="chan">#welcome</span>, <span class="chan">#rules</span>, <span class="chan">#start-here</span>, <span class="chan">#announcements</span>, <span class="chan">#introductions</span>, <span class="chan">#general</span>, <span class="chan">#content-submissions</span>, <span class="chan">#open-opportunities</span>.</li>
+      <li>Create the <b>@Roster</b> role (section 6).</li>
+      <li>On the DEALS category, deny @everyone View and allow @Roster; sync its channels (section 6).</li>
+      <li>Set Verification Level to <b>Medium</b> or <b>High</b> and turn on <b>Rules Screening</b> with a few rules (section 7).</li>
+      <li>Write the <b>welcome message</b> in <span class="chan">#welcome</span> and pin the <b>submission format</b> in <span class="chan">#content-submissions</span> (section 9).</li>
+      <li>Test with <b>View Server As @everyone</b>: confirm DEALS is hidden and INFO is visible.</li>
+      <li>Create a <b>single-use, 7-day invite</b> and send it to your first creator (section 8).</li>
+    </ol>
+
+    <!-- 13 -->
+    <div class="eyebrow" id="s13">13 · Sources</div>
+    <h2>Official Discord support articles</h2>
+    <p class="fine">All paths and feature behavior above were checked against Discord's own support articles, current as of 2026-06-18 (several last updated July 2025). Discord may relabel a button; if a step's wording differs on screen, look for the nearest equivalent in Server Settings.</p>
+    <ul class="src">
+      <li>Discord Server Setup Guide · <a href="https://support.discord.com/hc/en-us/articles/33023827550359-Discord-Server-Setup-Guide">support.discord.com/hc/en-us/articles/33023827550359</a></li>
+      <li>Sign Up and Registration Guide · <a href="https://support.discord.com/hc/en-us/articles/31676852332439-Discord-Sign-Up-and-Registration-Guide">support.discord.com/hc/en-us/articles/31676852332439</a></li>
+      <li>How do I create a server · <a href="https://support.discord.com/hc/en-us/articles/204849977-How-do-I-create-a-server">support.discord.com/hc/en-us/articles/204849977</a></li>
+      <li>Server Templates · <a href="https://support.discord.com/hc/en-us/articles/360041033511-Server-Templates">support.discord.com/hc/en-us/articles/360041033511</a></li>
+      <li>Enabling Your Community Server · <a href="https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server">support.discord.com/hc/en-us/articles/360047132851</a></li>
+      <li>Verification Levels · <a href="https://support.discord.com/hc/en-us/articles/216679607-Verification-Levels">support.discord.com/hc/en-us/articles/216679607</a></li>
+      <li>Rules Screening FAQ · <a href="https://support.discord.com/hc/en-us/articles/1500000466882-Rules-Screening-FAQ">support.discord.com/hc/en-us/articles/1500000466882</a></li>
+      <li>Server Member Applications (Apply to Join) · <a href="https://support.discord.com/hc/en-us/articles/29729107418519-Server-Member-Applications">support.discord.com/hc/en-us/articles/29729107418519</a></li>
+      <li>Community Onboarding FAQ · <a href="https://support.discord.com/hc/en-us/articles/11074987197975-Community-Onboarding-FAQ">support.discord.com/hc/en-us/articles/11074987197975</a></li>
+      <li>Community Server Welcome Screen · <a href="https://support.discord.com/hc/en-us/articles/360043913591-Community-Server-Welcome-Screen">support.discord.com/hc/en-us/articles/360043913591</a></li>
+      <li>Discord Roles and Permissions · <a href="https://support.discord.com/hc/en-us/articles/214836687-Discord-Roles-and-Permissions">support.discord.com/hc/en-us/articles/214836687</a></li>
+      <li>Channel Permissions Settings 101 · <a href="https://support.discord.com/hc/en-us/articles/10543994968087-Channel-Permissions-Settings-101">support.discord.com/hc/en-us/articles/10543994968087</a></li>
+      <li>Channel Categories 101 · <a href="https://support.discord.com/hc/en-us/articles/115001580171-Channel-Categories-101">support.discord.com/hc/en-us/articles/115001580171</a></li>
+      <li>Permissions (developer reference, hierarchy/override behavior) · <a href="https://docs.discord.com/developers/topics/permissions">docs.discord.com/developers/topics/permissions</a></li>
+      <li>Invites 101 · <a href="https://support.discord.com/hc/en-us/articles/208866998-Invites-101">support.discord.com/hc/en-us/articles/208866998</a></li>
+      <li>Members Page · <a href="https://support.discord.com/hc/en-us/articles/15946797617431-Members-Page">support.discord.com/hc/en-us/articles/15946797617431</a></li>
+      <li>AutoMod FAQ · <a href="https://support.discord.com/hc/en-us/articles/4421269296535-AutoMod-FAQ">support.discord.com/hc/en-us/articles/4421269296535</a></li>
+      <li>Notifications Settings 101 · <a href="https://support.discord.com/hc/en-us/articles/215253258-Notifications-Settings-101">support.discord.com/hc/en-us/articles/215253258</a></li>
+      <li>Enabling Server Discovery (what NOT to confuse with Community) · <a href="https://support.discord.com/hc/en-us/articles/360030843331-Enabling-Server-Discovery">support.discord.com/hc/en-us/articles/360030843331</a></li>
+    </ul>
+  </div>
+
+  <div class="foot">Sensitive Room · Haus of K · Discord Setup &amp; Operations Guide · Draft v1 · 2026-06-18 · Internal, not for distribution · Co-run by Sensitive Ones Agency + Nurilounge</div>
+</div>
+</body>
+</html>

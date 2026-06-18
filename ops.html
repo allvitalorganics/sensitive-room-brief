@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Sensitive Room · Ops &amp; Content-Tracking Playbook (Internal)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='6' fill='%23000000'/%3E%3Crect x='9' y='8' width='14' height='16' rx='2' fill='%23FFFFFF'/%3E%3Crect x='9' y='8' width='3' height='16' fill='%2312713A'/%3E%3C/svg%3E">
+<style>
+:root{--green:#12713A;--green-deep:#0D572C;--ink:#000;--paper:#fff;--muted:rgba(0,0,0,.6);--faint:rgba(0,0,0,.45);--line:rgba(0,0,0,.12);--wash:rgba(18,113,58,.06);--wash2:rgba(18,113,58,.1);--disp:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:#eceeec;line-height:1.62;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:32px auto;background:var(--paper);box-shadow:0 1px 3px rgba(0,0,0,.06),0 12px 40px rgba(0,0,0,.06);border-radius:14px;overflow:hidden}
+.head{background:var(--green);color:#fff;padding:38px 48px 34px}
+.head .kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.head h1{font-family:var(--disp);font-weight:600;font-size:30px;letter-spacing:-.02em;margin-top:10px;line-height:1.16}
+.head .meta{margin-top:14px;font-size:13px;opacity:.88;display:flex;flex-wrap:wrap;gap:6px 18px}
+.body{padding:38px 48px 50px}
+.draftnote{margin:0 0 26px;padding:12px 16px;border:1px solid rgba(0,0,0,.14);border-radius:10px;background:var(--wash);font-size:12.5px;color:var(--muted)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:10px;margin:36px 0 12px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--green)}
+h2{font-family:var(--disp);font-weight:600;font-size:21px;letter-spacing:-.01em;margin:28px 0 10px}
+h3{font-family:var(--disp);font-weight:600;font-size:16px;margin:20px 0 6px}
+p{margin:10px 0}
+.lead{font-size:17px;color:var(--muted)}
+ul,ol{margin:10px 0 10px 22px}li{margin:6px 0}
+.summary{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:var(--wash);margin:18px 0}
+.summary h3{margin-top:0;color:var(--green-deep)}
+.callout{border-left:3px solid var(--green);background:var(--wash);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14.5px}
+.callout.warn{border-left-color:var(--ink);background:rgba(0,0,0,.045)}
+.callout .t{font-weight:700;color:var(--green-deep);display:block;margin-bottom:4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.callout.warn .t{color:var(--ink)}
+.edit{background:rgba(18,113,58,.14);border-bottom:1px solid var(--green);padding:0 3px;border-radius:3px;font-weight:600}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);font-weight:700;background:var(--wash)}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px 36px;margin:26px 0 8px}
+.sig .f{border-top:1.5px solid var(--ink);padding-top:8px;font-size:13px;color:var(--muted)}
+.fine{font-size:12px;color:var(--faint);margin-top:8px}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:4px 11px;border-radius:100px;border:1.5px solid var(--ink)}
+.pill.g{background:var(--green);color:#fff;border-color:var(--green)}
+.foot{padding:22px 48px 34px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+@media(max-width:640px){.head,.body,.foot{padding-left:24px;padding-right:24px}.sig{grid-template-columns:1fr}}
+@media print{body{background:#fff}.wrap{box-shadow:none;margin:0;border-radius:0;max-width:none}.head{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* doc-specific additions */
+.toc{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin:18px 0 8px;background:var(--paper)}
+.toc ol{margin:6px 0 0 20px;columns:2;column-gap:32px;font-size:14px}
+.toc li{margin:4px 0;color:var(--muted)}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.kpi .b{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--wash)}
+.kpi .b .n{font-family:var(--disp);font-weight:600;font-size:26px;color:var(--green-deep);letter-spacing:-.01em}
+.kpi .b .l{font-size:12px;color:var(--muted);margin-top:2px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:16px 0;border:1px solid var(--line);border-radius:12px}
+.scroll table{margin:0;font-size:12.5px;min-width:920px}
+.scroll th,.scroll td{padding:8px 10px;white-space:nowrap}
+.scroll td.wrap-cell{white-space:normal;min-width:120px}
+.y{color:var(--green-deep);font-weight:700}
+.n2{color:var(--ink);font-weight:700;opacity:.55}
+.tl{margin:16px 0}
+.tl .row{display:grid;grid-template-columns:140px 1fr 150px;gap:0;border:1px solid var(--line);border-bottom:0;background:var(--paper)}
+.tl .row:last-child{border-bottom:1px solid var(--line)}
+.tl .row:first-child{border-radius:12px 12px 0 0}
+.tl .row:last-child{border-radius:0 0 12px 12px}
+.tl .when{background:var(--green);color:#fff;padding:14px 16px;font-family:var(--disp);font-weight:600;font-size:14px;display:flex;align-items:center}
+.tl .what{padding:14px 16px;font-size:14px}
+.tl .what b{color:var(--ink)}
+.tl .who{padding:14px 16px;font-size:12.5px;color:var(--muted);border-left:1px solid var(--line);display:flex;align-items:center}
+.tl .who .pill{font-size:11px;padding:3px 9px}
+.flow{counter-reset:step;margin:16px 0}
+.flow .s{position:relative;padding:12px 16px 12px 52px;border:1px solid var(--line);border-radius:10px;margin:8px 0;font-size:14px;background:var(--paper)}
+.flow .s::before{counter-increment:step;content:counter(step);position:absolute;left:14px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-family:var(--disp);font-weight:600;font-size:13px;display:flex;align-items:center;justify-content:center}
+.chan{font-family:"SF Mono",Menlo,monospace;font-size:13px;background:rgba(0,0,0,.05);padding:1px 6px;border-radius:5px;color:var(--green-deep)}
+.fileref{font-family:"SF Mono",Menlo,monospace;font-size:12.5px;color:var(--green-deep);word-break:break-all}
+@media(max-width:640px){.toc ol{columns:1}.kpi{grid-template-columns:1fr}.tl .row{grid-template-columns:1fr}.tl .who{border-left:0;border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="kicker">Sensitive Room · Haus of K</div>
+    <h1>Ops &amp; Content-Tracking Playbook</h1>
+    <div class="meta"><span>Vol I · Chapter 01</span><span>Brooklyn</span><span>Internal · Draft v1</span><span>2026-06-18</span></div>
+  </div>
+
+  <div class="body">
+    <div class="draftnote">
+      <b>Draft template for internal review. Not an executed instrument and not legal advice.</b> This is the operating system for the Chapter 01 pilot, written for Alex, Justin, Daesung, and Aram. It supersedes the earlier ops/deals doc. Before any commitment is made binding (creator releases, brand sponsorship terms, the SOA &lt;&gt; Nurilounge revenue split, and especially name/likeness and content-licensing language), have qualified counsel review the three agreements referenced in Section 11, with specific attention to publicity/likeness rights, content licensing, and any participant under 18. The FTC disclosure rules summarized here are paraphrased from official sources for operational use; confirm exact codified wording with counsel before publishing creator-facing terms.
+    </div>
+
+    <div class="toc">
+      <div class="eyebrow" style="margin:0 0 8px">In this playbook</div>
+      <ol>
+        <li>Pilot snapshot</li>
+        <li>Content obligation &amp; allocation engine</li>
+        <li>Tracking system &amp; schema</li>
+        <li>Master timeline</li>
+        <li>Submission workflow</li>
+        <li>Brand deal pipeline &amp; enforcement</li>
+        <li>Commission &amp; payout flow</li>
+        <li>Value-of-sponsorship model</li>
+        <li>Roles &amp; owners</li>
+        <li>Risk &amp; edge cases</li>
+        <li>The three agreements</li>
+      </ol>
+    </div>
+
+    <!-- 1 -->
+    <div class="eyebrow">1 · Pilot snapshot</div>
+    <h2>What Chapter 01 has to prove</h2>
+    <p class="lead">The first chapter is a content-and-photo machine, not a revenue event. We are building the reference asset that sells every chapter after it.</p>
+
+    <div class="kpi">
+      <div class="b"><div class="n"><span class="edit">20</span>–<span class="edit">30</span></div><div class="l">Creator floor to run the pilot</div></div>
+      <div class="b"><div class="n"><span class="edit">50</span></div><div class="l">Creator cap per chapter</div></div>
+      <div class="b"><div class="n"><span class="edit">3</span>–<span class="edit">4</span></div><div class="l">Sponsoring brands</div></div>
+    </div>
+
+    <table>
+      <tr><th>Dimension</th><th>Chapter 01 target</th></tr>
+      <tr><td>Cohort size</td><td>Floor <span class="edit">20</span> to <span class="edit">30</span> creators · hard cap <span class="edit">50</span>.</td></tr>
+      <tr><td>Sponsoring brands</td><td><span class="edit">3</span> to <span class="edit">4</span> brands. Chapter 01 lead sponsor stays "revealing soon" publicly (internally ClearDea).</td></tr>
+      <tr><td>Primary KPI</td><td><b>Content volume + photo library.</b> At a full <span class="edit">50</span>-creator cohort that is <span class="edit">150</span> organic pieces, plus the event photo set. This is the asset that sells Chapter 02+.</td></tr>
+      <tr><td>What it is NOT</td><td>Not a profit target. We do not measure Chapter 01 on revenue. The deal pipeline (Section 6) is a downstream KPI that pays off over the <span class="edit">12</span>-month window, not on event day.</td></tr>
+      <tr><td>Secondary KPIs</td><td>On-time delivery rate (target <span class="edit">90%+</span> of pieces inside the <span class="edit">30</span>-day window), FTC-disclosure compliance (target <span class="edit">100%</span>), and creators advanced to paid deals.</td></tr>
+    </table>
+
+    <div class="callout"><span class="t">The control that removes the gray zone</span>Sensitive Room is the single operating window for every brand-to-creator deal in the program. Both SOA and Nurilounge may source, handle, and reach out to creators and brands, but every resulting deal is booked <b>through Sensitive Room</b>. That single window is what turns scattered side-deals into a trackable, commissionable pipeline.</div>
+
+    <!-- 2 -->
+    <div class="eyebrow">2 · Content obligation &amp; allocation engine</div>
+    <h2>The always-3-pieces rule</h2>
+    <p>Every accepted creator must produce <b><span class="edit">3</span> organic content pieces</b> for the sponsoring brand(s). This is a mandatory condition of acceptance into the workshop, regardless of which brand a creator covers. The total is always three. The allocation engine decides who covers whom so that every paying brand gets fair, balanced coverage, and <b>Sensitive Room (not the creator) selects the brands</b> whenever there is more than one sponsor.</p>
+
+    <h3>Per-piece spec</h3>
+    <ul>
+      <li>At least one in-feed short-form video per piece (Instagram Reel or TikTok is acceptable).</li>
+      <li>Must tag the brand handle <b>and</b> <span class="chan">@sensitiveroom.hausofk</span>.</li>
+      <li>Must carry a clear FTC material-connection disclosure: <span class="chan">#ad</span> or <span class="chan">#sponsored</span>, or the platform paid-partnership label <b>plus</b> the creator's own disclosure (see Section 5 for why the label alone is not enough).</li>
+    </ul>
+
+    <h3>Allocation engine: worked examples</h3>
+    <table>
+      <tr><th>Sponsoring brands</th><th>Allocation per creator</th><th>How Sensitive Room balances it</th></tr>
+      <tr><td><b>1 brand</b></td><td><span class="edit">3</span> pieces for that one brand.</td><td>No choice needed. Every creator covers the single sponsor.</td></tr>
+      <tr><td><b>2 brands</b></td><td><span class="edit">2 + 1</span> split (2 pieces for one brand, 1 for the other).</td><td>Sensitive Room rotates which brand gets the "2" across the cohort, so over <span class="edit">50</span> creators each brand lands roughly the same total coverage.</td></tr>
+      <tr><td><b>3 brands</b></td><td><span class="edit">1</span> piece each.</td><td>Clean even split. Each brand gets one piece from every creator.</td></tr>
+      <tr><td><b>4+ brands</b></td><td>Sensitive Room selects <span class="edit">3</span> of the brands for each creator (still 3 pieces total).</td><td>Assignment is rotated so coverage is balanced and fair to every brand across the cohort. No creator covers all four; the engine spreads the fourth brand evenly.</td></tr>
+    </table>
+
+    <div class="callout"><span class="t">Worked example · the headline number</span><b><span class="edit">50</span> creators × <span class="edit">3</span> brands → ~<span class="edit">50</span> pieces per brand.</b> With three sponsors, each creator makes one piece per brand, so the brand receives one piece from each of the 50 creators: 50 organic pieces. Total cohort output is <span class="edit">150</span> pieces (50 × 3). That is the volume math a sponsor is buying into.</div>
+
+    <p class="fine">Why Sensitive Room picks the brands when there is more than one: if creators self-selected, the most attractive brand would get over-covered and a quieter brand would get starved. Centralizing the assignment is what lets us promise every paying sponsor balanced coverage.</p>
+
+    <!-- 3 -->
+    <div class="eyebrow">3 · Tracking system</div>
+    <h2>One row per creator, three pieces per row</h2>
+    <p>Everything is trackable because every promise has a column. The master tracker lives in a <b>shared sheet</b> (Google Sheets or Notion database), owned by the Sensitive Room window. <span class="chan">#content-submissions</span> in Discord is the intake; the sheet is the source of truth. The verification step is manual: when a link arrives, the Sensitive Room operator opens it, confirms the spec and FTC disclosure, then logs it.</p>
+
+    <h3>Schema (columns)</h3>
+    <div class="scroll">
+      <table>
+        <tr>
+          <th>Creator</th><th>IG / TikTok</th><th>Assigned brand(s)</th>
+          <th>P1 status</th><th>P1 link</th><th>P1 date</th>
+          <th>P2 status</th><th>P2 link</th><th>P2 date</th>
+          <th>P3 status</th><th>P3 link</th><th>P3 date</th>
+          <th>FTC ok</th><th>On time</th><th>Brand follow-up</th><th>Deal status</th><th>Deal value</th><th>SR comm. (<span class="edit">25%</span>)</th>
+        </tr>
+        <tr>
+          <td>Legal / known name</td><td>@handle</td><td>per allocation engine</td>
+          <td>draft / live</td><td>URL</td><td>YYYY-MM-DD</td>
+          <td>draft / live</td><td>URL</td><td>YYYY-MM-DD</td>
+          <td>draft / live</td><td>URL</td><td>YYYY-MM-DD</td>
+          <td>yes / no</td><td>yes / no</td><td>none / offered / contracted</td><td>open / signed / paid</td><td>$</td><td>auto = value × <span class="edit">25%</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>Sample populated tracker (3 example rows)</h3>
+    <div class="scroll">
+      <table>
+        <tr>
+          <th>Creator</th><th>Handle</th><th>Brand(s)</th>
+          <th>P1</th><th>P1 date</th>
+          <th>P2</th><th>P2 date</th>
+          <th>P3</th><th>P3 date</th>
+          <th>FTC</th><th>On time</th><th>Follow-up</th><th>Deal</th><th>Value</th><th>SR <span class="edit">25%</span></th>
+        </tr>
+        <tr>
+          <td>Maya R.</td><td>@mayaroutine</td><td class="wrap-cell">ClearDea ×3</td>
+          <td class="y">live</td><td>06-22</td>
+          <td class="y">live</td><td>06-29</td>
+          <td class="y">live</td><td>07-05</td>
+          <td class="y">yes</td><td class="y">yes</td><td>offered</td><td>signed</td><td>$1,200</td><td class="y">$240</td>
+        </tr>
+        <tr>
+          <td>Jules K.</td><td>@julesinbk</td><td class="wrap-cell">ClearDea ×2 · Brand B ×1</td>
+          <td class="y">live</td><td>06-24</td>
+          <td class="y">live</td><td>07-01</td>
+          <td class="n2">draft</td><td>&middot;</td>
+          <td class="y">yes</td><td class="y">yes</td><td>none</td><td>open</td><td>&middot;</td><td>&middot;</td>
+        </tr>
+        <tr>
+          <td>Priya S.</td><td>@priyaglow</td><td class="wrap-cell">Brand B ×1 · Brand C ×1 · ClearDea ×1</td>
+          <td class="y">live</td><td>06-30</td>
+          <td class="n2">draft</td><td>&middot;</td>
+          <td class="n2">draft</td><td>&middot;</td>
+          <td class="n2">no</td><td class="n2">no</td><td>none</td><td>open</td><td>&middot;</td><td>&middot;</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="callout"><span class="t">Verification step (non-negotiable)</span>A piece is not "live" in the tracker until a Sensitive Room operator has opened the link and confirmed three things: (1) it is an in-feed short-form video, (2) it tags both the brand handle and <span class="chan">@sensitiveroom.hausofk</span>, and (3) it carries a compliant FTC disclosure inside the post itself. Only then does the operator flip the status and stamp the publish date. The FTC column going "no" is a stop-and-fix, not a footnote (Section 10).</div>
+
+    <!-- 4 -->
+    <div class="eyebrow">4 · Master timeline</div>
+    <h2>Six milestones, each with an owner</h2>
+    <div class="tl">
+      <div class="row">
+        <div class="when">Pre-event</div>
+        <div class="what"><b>Acceptance &amp; signing.</b> Creator accepted, signs the creator agreement (name/likeness release + content license + FTC disclosure clause). Brand signs sponsorship agreement; full fee (100%) is due within 7 days of the workshop. Tracker row created.</div>
+        <div class="who"><span class="pill g">Sensitive Room</span></div>
+      </div>
+      <div class="row">
+        <div class="when">Day 0</div>
+        <div class="what"><b>Workshop day.</b> Photographed and filmed at Haus of K. Brand gets its <span class="edit">2</span>-minute intro slot. Daesung hosts. Allocation engine assignments handed to each creator.</div>
+        <div class="who"><span class="pill">Daesung + Team</span></div>
+      </div>
+      <div class="row">
+        <div class="when">+<span class="edit">14</span> days</div>
+        <div class="what"><b>First piece published.</b> Each creator's first of three pieces must be live within <span class="edit">14</span> days of the workshop. Logged to <span class="chan">#content-submissions</span>.</div>
+        <div class="who"><span class="pill">Creators / SR logs</span></div>
+      </div>
+      <div class="row">
+        <div class="when">+<span class="edit">30</span> days</div>
+        <div class="what"><b>All 3 pieces published.</b> Full set live and verified inside <span class="edit">30</span> days of the workshop. On-time column closes here.</div>
+        <div class="who"><span class="pill">Creators / SR verifies</span></div>
+      </div>
+      <div class="row">
+        <div class="when">+<span class="edit">60</span> days</div>
+        <div class="what"><b>Brand follow-up minimum.</b> Each sponsoring brand must extend at least <span class="edit">2</span> good-faith paid/branded deal offers from the cohort, sourced and booked through Sensitive Room.</div>
+        <div class="who"><span class="pill">Brands / SR brokers</span></div>
+      </div>
+      <div class="row">
+        <div class="when"><span class="edit">12</span> months</div>
+        <div class="what"><b>Deal window.</b> Any deal between a sponsoring brand and a cohort creator within <span class="edit">12</span> months of the workshop is transacted through Sensitive Room at <span class="edit">25%</span> commission.</div>
+        <div class="who"><span class="pill g">Sensitive Room</span></div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="eyebrow">5 · Submission workflow</div>
+    <h2>Discord in, sheet of record out</h2>
+    <div class="flow">
+      <div class="s"><b>Creator publishes</b> a piece, then drops the live link in <span class="chan">#content-submissions</span> with the brand name and piece number (e.g. "ClearDea · piece 2").</div>
+      <div class="s"><b>Sensitive Room logs</b> the link to the matching row and piece column in the tracker, stamping the publish date.</div>
+      <div class="s"><b>Verify spec.</b> Operator opens the link: in-feed short-form video, tags brand handle + <span class="chan">@sensitiveroom.hausofk</span>.</div>
+      <div class="s"><b>Verify FTC.</b> Disclosure must be inside the post, unavoidable, and use an acceptable term (<span class="chan">#ad</span> / <span class="chan">#sponsored</span> / "[Brand] Partner"). A platform paid-partnership label alone does <b>not</b> pass; the creator must add their own disclosure. If FTC fails, operator flags the creator to fix before counting it (Section 10).</div>
+      <div class="s"><b>Flip status to live</b> and set FTC = yes, on-time = yes/no against the +14 / +30 windows.</div>
+      <div class="s"><b>Notify the brand</b> once a creator's set is complete and verified, so the brand can begin its <span class="edit">6</span>-month organic repost license and shortlist the creator for paid follow-up.</div>
+    </div>
+    <div class="callout warn"><span class="t">Why the FTC step is strict</span>Under the FTC Endorsement Guides (16 CFR Part 255, revision effective July 26, 2023), there is no "organic" carve-out once a creator received something of value: a free workshop seat, gifted access, or a present-or-future paid pipeline is a material connection that must be clearly and conspicuously disclosed. Liability runs to the brand and the event organizer, not only the creator. A built-in platform label "might not be an adequate disclosure," so we require the creator to add their own. This is why the disclosure obligation sits in the creator agreement and gets verified on every single piece.</div>
+
+    <!-- 6 -->
+    <div class="eyebrow">6 · Brand deal pipeline &amp; follow-up enforcement</div>
+    <h2>The free content is fair because the brand commits back</h2>
+    <p>The organic pieces are not a giveaway. They are the front half of a trade: the brand gets <span class="edit">150</span> pieces of UGC at a fraction of market, and in return the brand commits to actually hire from the cohort. That commitment is what makes the free content fair to the creators.</p>
+    <ul>
+      <li><b>The minimum.</b> Each sponsoring brand commits to pursue at least <span class="edit">2</span> paid/branded deals from the cohort within <span class="edit">60</span> days of the workshop, sourced and booked through Sensitive Room.</li>
+      <li><b>The deal window.</b> Any deal between a sponsoring brand and a cohort creator within <span class="edit">12</span> months of the workshop runs through Sensitive Room. This covers the first deal and all repeat, renewal, and expansion business with the same brand.</li>
+      <li><b>If a brand ghosts.</b> If a sponsoring brand fails to extend good-faith offers meeting the minimum inside its <span class="edit">60</span>-day window, the affected creators may revoke that brand's usage license to their organic content, and that content may be removed at the creator's choice. This revocation right is the linkage that keeps the trade honest.</li>
+    </ul>
+    <div class="callout"><span class="t">Tracker linkage</span>The "Brand follow-up" column is how we enforce this. On day <span class="edit">60</span>, any brand with fewer than <span class="edit">2</span> offers logged is in breach, and Sensitive Room notifies the affected creators of their revocation right. We track follow-up per brand, not just per creator.</div>
+
+    <!-- 7 -->
+    <div class="eyebrow">7 · Commission &amp; payout flow</div>
+    <h2>One window collects, two buckets split</h2>
+    <p>Sensitive Room is the single contracting and collecting window. It books the deal, invoices the brand, collects the cash, takes commission, and remits the partner share.</p>
+    <table>
+      <tr><th>Bucket</th><th>What it is</th><th>Split (SOA : Nurilounge)</th></tr>
+      <tr><td><b>Bucket 1</b></td><td>Sponsorship fees: the brand chapter fees (<span class="edit">$3,000</span>–<span class="edit">$4,000</span> per brand per chapter).</td><td><span class="edit">50 : 50</span></td></tr>
+      <tr><td><b>Bucket 2</b></td><td>Branded-deal commission: the <span class="edit">25%</span> of branded-deal gross value on cohort deals booked through Sensitive Room.</td><td><span class="edit">60 : 40</span>, SOA-weighted <span class="pill">PROPOSED</span></td></tr>
+    </table>
+    <div class="callout warn"><span class="t">Bucket 2 split is a proposed ask, not agreed</span>The <span class="edit">60 : 40</span> SOA-weighted split on branded-deal commission is a <b>proposed negotiation ask to present to Baek Aram</b>, justified by SOA carrying the ongoing roster management and deal brokering. It is not yet agreed. Bucket 1 at <span class="edit">50 : 50</span> is the clean, shared base. Mark Bucket 2 as proposed in any doc Aram sees until it is settled in the room.</div>
+    <h3>Commission mechanics</h3>
+    <ul>
+      <li><b>Rate:</b> <span class="edit">25%</span> of branded-deal gross value. This is the market-standard single-program anchor for an emerging-creator program (the live band is 15 to 30%; <span class="edit">25%</span> sits squarely in it).</li>
+      <li><b>Collection:</b> brand pays Sensitive Room. Sensitive Room takes the <span class="edit">25%</span>, then remits the creator's share, then splits its commission per Bucket 2.</li>
+      <li><b>Cadence:</b> reconcile monthly. Send a statement showing gross, deductions, net, and amounts owed before each payout. Remit partner share within <span class="edit">15</span> days of cleared funds.</li>
+    </ul>
+
+    <!-- 8 -->
+    <div class="eyebrow">8 · Value-of-sponsorship model</div>
+    <h2>Why $3K to $4K is the conservative number</h2>
+    <p>The value case is volume of authentic content. Worked at the <span class="edit">$3,500</span> midpoint, against <span class="edit">50</span> creators × <span class="edit">3</span> pieces = <span class="edit">150</span> organic pieces total, spread across N balanced sponsors:</p>
+    <table>
+      <tr><th>Sponsors</th><th>Pieces per brand</th><th>Cost per piece at $3,500</th><th>vs open-market UGC ($100&ndash;$300)</th></tr>
+      <tr><td><b>1 brand</b></td><td><span class="edit">150</span></td><td>~<span class="edit">$23</span></td><td>~<span class="edit">4</span>x to <span class="edit">13</span>x cheaper</td></tr>
+      <tr><td><b>2 brands</b></td><td><span class="edit">75</span> each</td><td>~<span class="edit">$47</span></td><td>~<span class="edit">2</span>x to <span class="edit">6</span>x cheaper</td></tr>
+      <tr><td><b>3 brands</b></td><td><span class="edit">50</span> each</td><td>~<span class="edit">$70</span></td><td>~<span class="edit">1.4</span>x to <span class="edit">4</span>x cheaper</td></tr>
+      <tr><td><b>4 brands</b></td><td>~<span class="edit">38</span> each</td><td>~<span class="edit">$92</span></td><td>still under market floor</td></tr>
+    </table>
+    <p>Even at four sponsors, the sponsor pays below the open-market floor per piece. And the fee buys more than the pieces. On top of the content, each sponsor receives:</p>
+    <ul>
+      <li>Event coverage and a reusable photo library.</li>
+      <li>A <span class="edit">2</span>-minute brand-introduction slot in the workshop.</li>
+      <li>A vetted creator shortlist.</li>
+      <li>A <span class="edit">12</span>-month deal pipeline booked through Sensitive Room.</li>
+    </ul>
+    <div class="callout"><span class="t">How to pitch it</span>Lead with the cost-per-piece line for the actual sponsor count, then stack the four extras. The <span class="edit">$3,000</span>–<span class="edit">$4,000</span> fee is deliberately conservative because Chapter 01 is a reference-builder; once the case study exists, introduce sponsor tiers and category exclusivity to lift the number.</div>
+
+    <!-- 9 -->
+    <div class="eyebrow">9 · Roles &amp; owners</div>
+    <h2>Who owns what</h2>
+    <table>
+      <tr><th>Owner</th><th>Responsibility</th></tr>
+      <tr><td><b>Alex Kim</b><br><span class="fine">CEO, SOA · legal name Seungjoon Kim</span></td><td>Program lead. Brand sponsor deals, sponsorship terms, final call on splits and pricing, signs SOA-side agreements.</td></tr>
+      <tr><td><b>Justin Kim</b><br><span class="fine">COO, SOA</span></td><td>Operations and the tracker. Owns the shared sheet, the verification cadence, on-time and FTC columns, monthly reconciliation, and partner payouts.</td></tr>
+      <tr><td><b>Daesung Seo</b><br><span class="fine">Host / connector · 2.5M</span></td><td>Workshop host and the room's draw. Content coverage, creator coaching and selection for paid linkage, brand intros. Host, not coach-for-hire.</td></tr>
+      <tr><td><b>Baek Aram (백아람)</b><br><span class="fine">CEO, Nurilounge</span></td><td>Brand-and-house side. Sources sponsor brands, Hana House venue, community, offline affiliate. Partner on both revenue buckets.</td></tr>
+      <tr><td><b>Sensitive Room (window)</b></td><td>The single operating window. Logs every piece, verifies spec + FTC, brokers and books every brand-to-creator deal, collects, commissions, and remits. Both SOA and Nuri feed it; it is the system of record.</td></tr>
+    </table>
+
+    <!-- 10 -->
+    <div class="eyebrow">10 · Risk &amp; edge cases</div>
+    <h2>What goes wrong, and the handling</h2>
+    <table>
+      <tr><th>Case</th><th>Handling</th></tr>
+      <tr><td><b>Creator no-show</b> (attends, then never posts)</td><td>Tracker flags the missed +<span class="edit">14</span> / +<span class="edit">30</span> windows. Sensitive Room follows up once, then once more. Non-delivery is a breach of the acceptance condition: the creator forfeits paid-shortlist consideration and is not invited to the next chapter. Their event-footage release still stands.</td></tr>
+      <tr><td><b>Brand ghosts on follow-up</b> (under <span class="edit">2</span> offers by day <span class="edit">60</span>)</td><td>Brand is in breach of the follow-up minimum. Sensitive Room notifies affected creators of their right to revoke that brand's usage license; content may be removed at the creator's choice. Brand is not offered a renewal chapter until cured.</td></tr>
+      <tr><td><b>Participant under 18</b></td><td>The name/likeness release and event-footage license require a parent or guardian to sign. Flag at acceptance; do not film or publish a minor's content under the standard adult release. Counsel should confirm child-directed and COPPA considerations before any minor is accepted.</td></tr>
+      <tr><td><b>Content-removal request</b></td><td>Creator retains ownership and may request removal of their own pieces. Brand's repost license is <span class="edit">6</span> months from publication and is the only thing the brand may rely on; a valid revocation (brand breach) or a minor-related issue ends the license early. Log the request and the date the brand was notified to take down reposts.</td></tr>
+      <tr><td><b>Dispute</b> (attribution, who sourced a brand, deal credit)</td><td>The tracker and the single-window booking rule are the tiebreaker: if it was not booked through Sensitive Room, it is not a program deal. Sponsorship and partnership terms are governed by the State of New York. Escalate unresolved splits to the Alex&lt;&gt;Aram principals.</td></tr>
+      <tr><td><b>FTC non-disclosure by a creator</b></td><td>Verification catches it before the piece counts. Operator sets FTC = no, does not count the piece, and tells the creator to add a compliant in-post disclosure (acceptable terms only; platform label alone does not cure). Repeated failure is a material breach of the creator agreement and removes the creator from paid consideration. This protects the brand and the organizer, who share liability under the FTC Guides.</td></tr>
+    </table>
+
+    <!-- 11 -->
+    <div class="eyebrow">11 · The three agreements</div>
+    <h2>Where the binding language lives</h2>
+    <p>This playbook is the operating layer. The enforceable terms sit in three separate draft agreements. Have counsel review all three before any signature, with attention to likeness/publicity, content licensing, and minor-participant issues.</p>
+    <table>
+      <tr><th>Agreement</th><th>Filename</th></tr>
+      <tr><td><b>Creator agreement</b><br><span class="fine">Acceptance, 3-piece obligation, name/likeness release, 6-month content license, FTC disclosure clause</span></td><td><span class="fileref">SOA_CON_Sensitive_Room_Creator_Agreement_v1_20260618.html</span></td></tr>
+      <tr><td><b>Brand sponsorship agreement</b><br><span class="fine">Fee + schedule, brand intro slot, content allocation, 60-day follow-up minimum, 12-month deal window, 25% commission</span></td><td><span class="fileref">SOA_CON_Sensitive_Room_Brand_Sponsorship_v1_20260618.html</span></td></tr>
+      <tr><td><b>Nurilounge partnership MOU</b><br><span class="fine">Single-window control, Bucket 1 50:50, Bucket 2 60:40 proposed, collection and payout mechanics</span></td><td><span class="fileref">SOA_CON_Sensitive_Room_Nuri_Partnership_v1_20260618.html</span></td></tr>
+    </table>
+    <p class="fine">Filenames are the intended drafts in this folder. If a draft has not been generated yet, treat its filename here as the placeholder name to create it under.</p>
+
+  </div>
+
+  <div class="foot">
+    Sensitive Room · Haus of K · Ops &amp; Content-Tracking Playbook · Internal Draft v1 · 2026-06-18 · Supersedes the prior ops/deals doc · Governing law: State of New York · Not for distribution · Not legal advice
+  </div>
+</div>
+</body>
+</html>

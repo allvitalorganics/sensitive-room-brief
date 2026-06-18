@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Sensitive Room · Haus of K · Chapter 01 Pilot Playbook</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' rx='6' fill='%23000000'/%3E%3Crect x='9' y='8' width='14' height='16' rx='2' fill='%23FFFFFF'/%3E%3Crect x='9' y='8' width='3' height='16' fill='%2312713A'/%3E%3C/svg%3E">
+<style>
+:root{--green:#12713A;--green-deep:#0D572C;--ink:#000;--paper:#fff;--muted:rgba(0,0,0,.6);--faint:rgba(0,0,0,.45);--line:rgba(0,0,0,.12);--wash:rgba(18,113,58,.06);--wash2:rgba(18,113,58,.1);--disp:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Apple SD Gothic Neo","Segoe UI",Roboto,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:#eceeec;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:32px auto;background:var(--paper);box-shadow:0 1px 3px rgba(0,0,0,.06),0 12px 40px rgba(0,0,0,.06);border-radius:16px;overflow:hidden}
+.head{background:var(--green);color:#fff;padding:40px 52px 36px}
+.head .kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.head h1{font-family:var(--disp);font-weight:600;font-size:34px;letter-spacing:-.02em;margin-top:10px;line-height:1.14}
+.head .meta{margin-top:14px;font-size:13px;opacity:.9;display:flex;flex-wrap:wrap;gap:6px 18px}
+.body{padding:40px 52px 54px}
+.note{margin:0 0 26px;padding:12px 16px;border:1px solid rgba(0,0,0,.14);border-radius:10px;background:var(--wash);font-size:12.5px;color:var(--muted)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);display:flex;align-items:center;gap:10px;margin:38px 0 14px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--green)}
+h2{font-family:var(--disp);font-weight:600;font-size:22px;letter-spacing:-.01em;margin:30px 0 10px}
+h3{font-family:var(--disp);font-weight:600;font-size:16px;margin:18px 0 6px}
+p{margin:10px 0}ul,ol{margin:10px 0 10px 22px}li{margin:6px 0}
+.callout{border-left:3px solid var(--green);background:var(--wash);padding:14px 18px;border-radius:0 10px 10px 0;margin:16px 0;font-size:14.5px}
+.callout.warn{border-left-color:var(--ink);background:rgba(0,0,0,.045)}
+.callout .t{font-weight:700;color:var(--green-deep);display:block;margin-bottom:4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.callout.warn .t{color:var(--ink)}
+.edit{background:rgba(18,113,58,.14);border-bottom:1px solid var(--green);padding:0 3px;border-radius:3px;font-weight:600}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--green-deep);font-weight:700;background:var(--wash)}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;border:1.5px solid var(--ink);letter-spacing:.04em}
+.pill.g{background:var(--green);color:#fff;border-color:var(--green)}
+.foot{padding:22px 52px 34px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+@media(max-width:640px){.head,.body,.foot{padding-left:22px;padding-right:22px}}
+@media print{body{background:#fff}.wrap{box-shadow:none;margin:0;border-radius:0;max-width:none}.head{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* doc-specific additions */
+.banner{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:6px 0 8px}
+.banner .top{background:var(--green-deep);color:#fff;padding:18px 22px}
+.banner .top .gt{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.82}
+.banner .top .h{font-family:var(--disp);font-weight:600;font-size:24px;letter-spacing:-.01em;margin-top:4px}
+.banner .top .h span{opacity:.78;font-weight:500}
+.banner .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.banner .c{padding:16px 20px;border-right:1px solid var(--line)}
+.banner .c:last-child{border-right:0}
+.banner .c .n{font-family:var(--disp);font-weight:600;font-size:24px;color:var(--green-deep);letter-spacing:-.01em;line-height:1}
+.banner .c .l{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.35}
+.mission{padding:16px 22px;border-top:1px solid var(--line);background:var(--wash);font-size:14.5px}
+.mission b{color:var(--green-deep)}
+.sprint{margin:16px 0}
+.sprint .d{display:grid;grid-template-columns:150px 1fr 130px;border:1px solid var(--line);border-bottom:0;background:var(--paper)}
+.sprint .d:last-child{border-bottom:1px solid var(--line)}
+.sprint .d:first-child{border-radius:12px 12px 0 0}
+.sprint .d:last-child{border-radius:0 0 12px 12px}
+.sprint .d.game{background:var(--wash2)}
+.sprint .when{background:var(--green);color:#fff;padding:13px 15px;font-family:var(--disp);font-weight:600;font-size:13.5px;display:flex;align-items:center;line-height:1.25}
+.sprint .d.game .when{background:var(--green-deep)}
+.sprint .task{padding:13px 16px;font-size:14px}
+.sprint .task b{color:var(--ink)}
+.sprint .who{padding:13px 14px;font-size:12px;color:var(--muted);border-left:1px solid var(--line);display:flex;align-items:center}
+.tl{margin:16px 0}
+.tl .row{display:grid;grid-template-columns:150px 1fr;border:1px solid var(--line);border-bottom:0;background:var(--paper)}
+.tl .row:last-child{border-bottom:1px solid var(--line)}
+.tl .row:first-child{border-radius:12px 12px 0 0}
+.tl .row:last-child{border-radius:0 0 12px 12px}
+.tl .when{background:var(--green);color:#fff;padding:13px 16px;font-family:var(--disp);font-weight:600;font-size:13.5px;display:flex;align-items:center}
+.tl .what{padding:13px 16px;font-size:14px}
+.tl .what b{color:var(--ink)}
+.ros{margin:16px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.ros .r{display:grid;grid-template-columns:78px 1fr;border-bottom:1px solid var(--line)}
+.ros .r:last-child{border-bottom:0}
+.ros .r.net .t{background:var(--wash)}
+.ros .t{padding:11px 14px;font-family:"SF Mono",Menlo,monospace;font-size:13px;font-weight:600;color:var(--green-deep);background:var(--paper);border-right:1px solid var(--line);display:flex;align-items:center}
+.ros .x{padding:11px 16px;font-size:13.5px}
+.ros .x b{color:var(--ink)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.cols .col{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+.cols .col .ch{padding:12px 16px;font-family:var(--disp);font-weight:600;font-size:15px;color:#fff;background:var(--green)}
+.cols .col .cb{padding:14px 16px;font-size:13px}
+.cols .col ul{margin:0 0 0 18px}
+.cols .col li{margin:7px 0;color:var(--muted)}
+.cols .col li b{color:var(--ink)}
+.recruit{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.recruit .b{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--paper)}
+.recruit .b h3{margin-top:0;color:var(--green-deep)}
+.recruit .b .tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.chan{font-family:"SF Mono",Menlo,monospace;font-size:13px;background:rgba(0,0,0,.05);padding:1px 6px;border-radius:5px;color:var(--green-deep)}
+.docset{margin:16px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.docset .r{display:grid;grid-template-columns:200px 1fr 130px;border-bottom:1px solid var(--line)}
+.docset .r:last-child{border-bottom:0}
+.docset .r.held{background:rgba(0,0,0,.035)}
+.docset .f{padding:11px 14px;font-family:"SF Mono",Menlo,monospace;font-size:12.5px;color:var(--green-deep);border-right:1px solid var(--line);display:flex;align-items:center;word-break:break-all}
+.docset .dd{padding:11px 14px;font-size:13.5px;display:flex;align-items:center}
+.docset .aud{padding:11px 12px;font-size:11px;display:flex;align-items:center;border-left:1px solid var(--line)}
+.aud .pill{font-size:10px;padding:3px 9px}
+.links{display:flex;flex-wrap:wrap;gap:8px 10px;margin:14px 0}
+.links a{font-size:13px;color:var(--green-deep);text-decoration:none;border:1px solid var(--line);border-radius:100px;padding:6px 13px;background:var(--paper)}
+.links a:hover{background:var(--wash)}
+@media(max-width:680px){
+.banner .grid{grid-template-columns:repeat(2,1fr)}.banner .c:nth-child(2){border-right:0}
+.sprint .d{grid-template-columns:1fr}.sprint .who{border-left:0;border-top:1px solid var(--line)}
+.tl .row{grid-template-columns:1fr}
+.cols{grid-template-columns:1fr}.recruit{grid-template-columns:1fr}
+.ros .r{grid-template-columns:1fr}.ros .t{border-right:0;border-bottom:1px solid var(--line)}
+.docset .r{grid-template-columns:1fr}.docset .f,.docset .aud{border-right:0;border-left:0;border-bottom:1px solid var(--line)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="kicker">Sensitive Room · Haus of K · Volume I · Chapter 01</div>
+    <h1>Chapter 01 Pilot Playbook</h1>
+    <div class="meta">
+      <span>The single run-it document</span>
+      <span>Brooklyn, NY</span>
+      <span>Internal · Draft v1 · 2026-06-18</span>
+      <span>Game time: Thursday, June 25</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <div class="note">
+      <b>Working playbook, internal.</b> Draft v1, 2026-06-18. The contracts referenced are draft templates pending counsel. Highlighted numbers are recommended defaults you can tune in the source documents.
+    </div>
+
+    <!-- 1 · SNAPSHOT -->
+    <div class="eyebrow">1 · Snapshot</div>
+    <div class="banner">
+      <div class="top">
+        <div class="gt">Chapter 01 · Haus of K</div>
+        <div class="h">Thursday, June 25, 2026 <span>· Hana House, 345 Adams St, Brooklyn NY 11201</span></div>
+      </div>
+      <div class="grid">
+        <div class="c"><div class="n"><span class="edit">20</span>+</div><div class="l">Creators to recruit by the 25th (cap <span class="edit">50</span>)</div></div>
+        <div class="c"><div class="n"><span class="edit">3</span> to <span class="edit">4</span></div><div class="l">Sponsoring brands</div></div>
+        <div class="c"><div class="n"><span class="edit">3</span></div><div class="l">Organic pieces per creator</div></div>
+        <div class="c"><div class="n">7</div><div class="l">Days from today to game time</div></div>
+      </div>
+      <div class="mission">
+        <b>Mission:</b> rising creators break into K-beauty, network, deals, knowledge. The Sensitive Room is the door, Daesung is the guide, and Chapter 01 is the proof asset that sells every chapter after it.
+      </div>
+    </div>
+    <div class="callout warn">
+      <span class="t">Read this first</span>
+      This is a <b>7-day rushed sprint</b>. From today (Thu Jun 18) to game time (Thu Jun 25) is tight, but we are going for it. Everything below assumes the whole team moves in parallel, not in sequence. If a brand or a creator block stalls, we still run the room on the 25th with what we have.
+    </div>
+
+    <!-- 2 · THE 7-DAY SPRINT -->
+    <div class="eyebrow">2 · The 7-day sprint</div>
+    <h2>Thu Jun 18 to Thu Jun 25, day by day</h2>
+    <p>One owner per day means accountable, not alone. Recruitment runs every single day in the background; the dated tasks below are the gates that have to clear.</p>
+    <div class="sprint">
+      <div class="d">
+        <div class="when">Thu · Jun 18</div>
+        <div class="task"><b>Launch the sprint.</b> Lock the venue date with Nuri for the 25th. Push the poster + Tally apply link to Daesung's network and <span class="chan">@sensitiveroom.hausofk</span>. Nuri starts working its brand shortlist. Send the brand sponsorship one-pager to the first targets.</div>
+        <div class="who">All · Aram (venue) · Daesung (poster)</div>
+      </div>
+      <div class="d">
+        <div class="when">Fri · Jun 19</div>
+        <div class="task"><b>Brand outreach in earnest.</b> Nuri sources and pitches <span class="edit">3</span> to <span class="edit">4</span> brands; Alex handles brand-facing terms and sends the sponsorship agreement to anyone warm. Daesung + Justin open the creator funnel and start logging applicants.</div>
+        <div class="who">Aram + Alex (brands) · Daesung (creators)</div>
+      </div>
+      <div class="d">
+        <div class="when">Sat · Jun 20</div>
+        <div class="task"><b>Stand up the rails.</b> Justin builds the Discord (channels + roles per the Discord Guide) and the content tracker. Confirm posting plan: program posts from the SOA account with Nuri as collaborator, pending Aram's confirm.</div>
+        <div class="who">Justin (Discord + tracker + posting)</div>
+      </div>
+      <div class="d">
+        <div class="when">Sun / Mon · Jun 21, 22</div>
+        <div class="task"><b>Recruit hard.</b> Sunday is peak creator-DM time, carry it into Monday. Daesung + SOA push applications to the <span class="edit">20</span>+ floor. Chase the brand shortlist; aim to have at least 2 brands verbally in.</div>
+        <div class="who">Daesung + SOA (creators) · Aram (brands)</div>
+      </div>
+      <div class="d">
+        <div class="when">Tue · Jun 23</div>
+        <div class="task"><b>Sign the brands.</b> Sponsoring brands sign the Brand Sponsorship Agreement (fee <span class="edit">$3,000</span> to <span class="edit">$4,000</span>, paid 100% within 7 days of the workshop). Lock how many brands we run so allocation math is ready.</div>
+        <div class="who">Alex (brand signatures)</div>
+      </div>
+      <div class="d">
+        <div class="when">Wed · Jun 24</div>
+        <div class="task"><b>Accept + sign creators.</b> Confirm the cohort, send accepted creators the Participation Agreement, collect signatures, add them to Discord. Pre-compute brand allocations. Final venue + run-of-show walk-through with Daesung.</div>
+        <div class="who">Justin (creator sign + Discord) · Daesung (room)</div>
+      </div>
+      <div class="d game">
+        <div class="when">Thu · Jun 25 · GAME TIME</div>
+        <div class="task"><b>Workshop at Haus of K.</b> Brand intros (2 min each), Daesung's talk, allocation assignments handed to each creator, filmed + photographed, then networking. Doors and run-of-show in Section 4.</div>
+        <div class="who">Daesung (host) · All (floor)</div>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="t">Parallel, not sequential</span>
+      Brands (Aram + Alex) and creators (Daesung + Justin) recruit on separate tracks at the same time. Do not wait for brands to finish before opening creators, or the 25th will not happen.
+    </div>
+
+    <!-- 3 · MASTER TIMELINE AFTER -->
+    <div class="eyebrow">3 · Master timeline after the workshop</div>
+    <h2>The dates every signed party is held to</h2>
+    <div class="tl">
+      <div class="row"><div class="when">Thu · Jun 25</div><div class="what"><b>Workshop.</b> Cohort assembled, content filmed and photographed, allocations assigned in-room. The clock starts here.</div></div>
+      <div class="row"><div class="when">by Jul 2</div><div class="what"><b>Brands pay 100%.</b> Each sponsoring brand pays its full fee within <span class="edit">7</span> days of the workshop date. Single payment; no split schedule.</div></div>
+      <div class="row"><div class="when">by Jul 9</div><div class="what"><b>First piece live.</b> Each creator's first organic piece is published within <span class="edit">14</span> days of the workshop.</div></div>
+      <div class="row"><div class="when">by Jul 25</div><div class="what"><b>All 3 pieces live.</b> Each creator's full set of <span class="edit">3</span> pieces is published and verified in the tracker within <span class="edit">30</span> days.</div></div>
+      <div class="row"><div class="when">by Aug 24</div><div class="what"><b>Brand 2-deal minimum.</b> Each brand pursues at least <span class="edit">2</span> paid deals from the cohort within <span class="edit">60</span> days, through Sensitive Room. Miss it, and affected creators may revoke that brand's license and pull content.</div></div>
+      <div class="row"><div class="when">12 months</div><div class="what"><b>Deal roll-up.</b> Any brand-to-creator deal within <span class="edit">12</span> months of the workshop runs through Sensitive Room.</div></div>
+    </div>
+
+    <!-- 4 · RUN OF SHOW -->
+    <div class="eyebrow">4 · Run-of-show · June 25 in the room</div>
+    <h2>The in-room program</h2>
+    <p>Times are clock offsets from doors. Daesung hosts throughout. The room is filmed and photographed start to finish.</p>
+    <table>
+      <thead><tr><th style="width:78px">Clock</th><th>Beat</th><th style="width:140px">Lead</th></tr></thead>
+      <tbody>
+        <tr><td><b>0:00</b></td><td><b>Open.</b> Welcome, what the Sensitive Room is, how the night runs.</td><td>Daesung</td></tr>
+        <tr><td><b>0:06</b></td><td><b>Brand introductions.</b> Each sponsoring brand gets 2 minutes to introduce itself to the cohort.</td><td>Brands</td></tr>
+        <tr><td><b>0:14</b></td><td><b>Why beauty.</b> The case for entering K-beauty now and what this room unlocks.</td><td>Daesung</td></tr>
+        <tr><td><b>0:21</b></td><td><b>What brands want.</b> What good organic content looks like and what earns the paid follow-up.</td><td>Daesung</td></tr>
+        <tr><td><b>0:28</b></td><td><b>How the room works + the commitment.</b> The 3-piece obligation, timelines, allocation, FTC #ad rule. Hand each creator their brand assignment.</td><td>Daesung + Justin</td></tr>
+        <tr><td><b>0:33</b></td><td><b>Q&amp;A.</b> Open floor.</td><td>All</td></tr>
+        <tr><td><b>0:55</b></td><td><b>Networking.</b> Creators meet brands and each other. Capture content.</td><td>All</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn">
+      <span class="t">Held back</span>
+      Daesung's full workshop script and the slide deck exist as separate documents. They are <b>not</b> in this hub and are not published. Daesung runs from those; this playbook only carries the skeleton above.
+    </div>
+
+    <!-- 5 · RECRUITMENT -->
+    <div class="eyebrow">5 · Recruitment plan</div>
+    <h2>Two funnels, both filling by the 25th</h2>
+    <div class="recruit">
+      <div class="b">
+        <div class="tag">Creators · target 20+</div>
+        <h3>SOA + Daesung</h3>
+        <ul>
+          <li><b>Daesung's network.</b> Direct outreach to rising creators in his orbit; his name is the magnet.</li>
+          <li><b>The poster.</b> Shared to stories and DMs as the share-forward asset.</li>
+          <li><b>Tally application.</b> The one apply link everyone funnels into.</li>
+          <li><b>Program DMs.</b> <span class="chan">@sensitiveroom.hausofk</span> is the inbound contact handle.</li>
+        </ul>
+      </div>
+      <div class="b">
+        <div class="tag">Brands · target 3 to 4</div>
+        <h3>Nurilounge leads</h3>
+        <ul>
+          <li><b>Nuri sources the brands</b> from its K-beauty relationships and pitches the chapter.</li>
+          <li><b>Alex handles terms</b> and sends the sponsorship agreement to warm targets.</li>
+          <li><b>Nuri also helps with creators</b> from its own pool, in parallel.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="t">Selection filter</span>
+      Accept creators who <b>want to enter beauty and have potential</b>, not creators who are already established beauty names. The room is a door for people on the way in.
+    </div>
+
+    <!-- 6 · DEAL TERMS AT A GLANCE -->
+    <div class="eyebrow">6 · Deal terms at a glance</div>
+    <h2>What each side signs up for</h2>
+    <div class="cols">
+      <div class="col">
+        <div class="ch">Creator</div>
+        <div class="cb"><ul>
+          <li><b>Free</b> to attend.</li>
+          <li>Makes <b><span class="edit">3</span> organic pieces</b>, mandatory to participate.</li>
+          <li>First piece by <b>Jul 9</b> (14 days), all 3 by <b>Jul 25</b> (30 days).</li>
+          <li><b>You own your content.</b> Brand gets a 6-month organic repost license only.</li>
+          <li>A real <b>shot at paid deals</b> through the room.</li>
+        </ul></div>
+      </div>
+      <div class="col">
+        <div class="ch">Brand</div>
+        <div class="cb"><ul>
+          <li>Fee <b><span class="edit">$3,000</span> to <span class="edit">$4,000</span></b> per chapter.</li>
+          <li>Paid <b>100% within <span class="edit">7</span> days</b> of the workshop. Single payment.</li>
+          <li>Up to <b><span class="edit">150</span> organic pieces</b> across the cohort, allocated fairly.</li>
+          <li><b><span class="edit">2</span>-deal follow-up minimum</b> within 60 days, through the room.</li>
+          <li><b><span class="edit">25%</span> commission</b> on deals booked through Sensitive Room.</li>
+          <li>A 2-minute <b>intro slot</b> in the room.</li>
+        </ul></div>
+      </div>
+      <div class="col">
+        <div class="ch">Partner split</div>
+        <div class="cb"><ul>
+          <li><b>Bucket 1 · sponsorship fees:</b> <span class="edit">50:50</span> SOA : Nurilounge.</li>
+          <li><b>Bucket 2 · commission:</b> <span class="edit">60:40</span> SOA-weighted, <b>proposed</b>, see the MOU. Not yet agreed; 50:50 fallback.</li>
+          <li>Governing law: New York.</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="callout warn">
+      <span class="t">Keep it inside</span>
+      The commission percentage and the 60:40 split are fine on this internal team doc. They never appear on the public hub, the poster, the landing page, or any brand-facing or creator-facing surface. Creators see "free, make 3, shot at paid deals"; brands see "fee, content volume, 2-deal follow-up, 25% on deals we book for you."
+    </div>
+
+    <!-- 7 · POSTING PLAN -->
+    <div class="eyebrow">7 · Posting plan</div>
+    <h2>One handle carries the reach</h2>
+    <p>Program and event posts publish from the <b>Sensitive Ones Agency account</b> with <b>Nurilounge set as a collaborator</b> (Instagram Collab / co-author), <b>not</b> from the Haus of K account. The point is to unify the program's posting on one handle so reach compounds, with Nuri co-credited.</p>
+    <ul>
+      <li><span class="chan">@sensitiveroom.hausofk</span> stays the program's DM and contact handle that creators tag.</li>
+      <li>Creator posts: at least one in-feed short-form video (Reel or TikTok), tag the <b>brand handle</b> + <b><span class="chan">@sensitiveroom.hausofk</span></b> + a clear <b>#ad / #sponsored</b> disclosure.</li>
+    </ul>
+    <div class="callout warn">
+      <span class="t">Pending</span>
+      The account-unification and collaborator-posting setup is <b>pending Baek Aram / Nurilounge confirmation</b>. Confirm before the first program post goes out.
+    </div>
+
+    <!-- 8 · TRACKING -->
+    <div class="eyebrow">8 · Tracking pointer</div>
+    <h2>How we know it actually shipped</h2>
+    <p>Each creator's <span class="edit">3</span> pieces are logged in Discord <span class="chan">#content-submissions</span>, verified against the brief, and tracked to the timeline. Full schema, submission workflow, and the verification checklist live in the <b>Ops &amp; Content-Tracking Playbook</b>.</p>
+    <div class="callout">
+      <span class="t">Allocation engine, one line</span>
+      1 brand to 3 pieces · 3 brands to 1 each · 2 brands to a 2+1 split · 4+ brands the Room selects 3 per creator. When there is more than one brand, <b>Sensitive Room (not the creator) picks</b> which brands a creator covers, for fairness.
+    </div>
+
+    <!-- 9 · ROLES -->
+    <div class="eyebrow">9 · Roles</div>
+    <h2>Who owns what</h2>
+    <table>
+      <thead><tr><th style="width:150px">Person</th><th style="width:170px">Seat</th><th>Owns</th></tr></thead>
+      <tbody>
+        <tr><td><b>Alex Kim</b></td><td>CEO · SOA</td><td>Deal terms, brand-facing, overall direction.</td></tr>
+        <tr><td><b>Justin Kim</b></td><td>COO · SOA</td><td>Ops, creator pipeline, the tracker, Discord and posting setup.</td></tr>
+        <tr><td><b>Daesung Seo</b></td><td>Host · CMO</td><td>Creator recruitment via his network, hosts the workshop, content guidance.</td></tr>
+        <tr><td><b>Baek Aram</b></td><td>CEO · Nurilounge</td><td>Haus of K venue, brand sourcing, creator pool, posting collaborator.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 10 · RISKS -->
+    <div class="eyebrow">10 · Top risks for a rushed pilot</div>
+    <h2>What can break, and how we catch it</h2>
+    <table>
+      <thead><tr><th style="width:34%">Risk</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td><b>Too few creators by the 25th.</b></td><td>Recruit every day, weekend push, Daesung's network as the magnet. Pilot floor is <span class="edit">20</span>; if we are short, we still run with a smaller cohort rather than slip the date.</td></tr>
+        <tr><td><b>A brand drops out.</b></td><td>Target <span class="edit">3</span> to <span class="edit">4</span> so one loss is survivable. Get verbal commits early in the week, signatures by Mon Jun 23. The room runs even with a single brand.</td></tr>
+        <tr><td><b>Content slips past 30 days.</b></td><td>14-day first-piece gate surfaces slippage early in the tracker; reminders at Jul 2 and Jul 16. All <span class="edit">3</span> verified in <span class="chan">#content-submissions</span> by Jul 25.</td></tr>
+        <tr><td><b>No-show on the night.</b></td><td>Confirm attendance in Discord on Jun 24, send the address + time, and over-recruit against the floor to absorb drop-off.</td></tr>
+        <tr><td><b>FTC disclosure missed.</b></td><td>The #ad / #sponsored rule is stated in the room at 0:28, written in the Participation Agreement, and checked at verification before a piece counts.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 11 · DOC SET -->
+    <div class="eyebrow">11 · The document set</div>
+    <h2>Every doc, and who it is for</h2>
+    <div class="docset">
+      <div class="r"><div class="f">playbook.html</div><div class="dd"><b>Pilot Playbook</b> · this document</div><div class="aud"><span class="pill g">Team</span></div></div>
+      <div class="r"><div class="f">creator.html</div><div class="dd">Creator Participation Agreement</div><div class="aud"><span class="pill">Creator</span></div></div>
+      <div class="r"><div class="f">brand.html</div><div class="dd">Brand Sponsorship Agreement</div><div class="aud"><span class="pill">Brand</span></div></div>
+      <div class="r"><div class="f">partnership.html</div><div class="dd">Nurilounge Partnership MOU</div><div class="aud"><span class="pill">Partners</span></div></div>
+      <div class="r"><div class="f">ops.html</div><div class="dd">Ops &amp; Content-Tracking Playbook</div><div class="aud"><span class="pill">Partners</span></div></div>
+      <div class="r"><div class="f">discord.html</div><div class="dd">Discord Setup &amp; Operations Guide</div><div class="aud"><span class="pill g">Team</span></div></div>
+      <div class="r"><div class="f">poster.html</div><div class="dd">Instagram Promo Poster</div><div class="aud"><span class="pill">Creator</span></div></div>
+      <div class="r"><div class="f">concept.html</div><div class="dd">Concept Proposal (KR / EN, bilingual)</div><div class="aud"><span class="pill">Partners</span></div></div>
+      <div class="r held"><div class="f">held back</div><div class="dd"><b>Daesung's workshop script / kit</b> and the <b>slide deck</b>. Not in the hub, not linked, not listed as available.</div><div class="aud"><span class="pill">Held</span></div></div>
+    </div>
+    <div class="callout warn">
+      <span class="t">Partner-only confidential lives inside</span>
+      <b>partnership.html</b> and <b>ops.html</b> carry the commission %, the 60:40 split, the network-pool swap, and the guarantee math. Those documents are partner-only. The public hub index never prints the commission % or the 60:40 split.
+    </div>
+
+    <div class="eyebrow">External links</div>
+    <div class="links">
+      <a href="https://sensitive-room.vercel.app">Live site</a>
+      <a href="https://tally.so/r/81E2a5">Apply (Tally)</a>
+      <a href="https://linktr.ee/sensitiveroom.hausofk">Linktree</a>
+      <a href="https://www.instagram.com/sensitiveroom.hausofk/">Program IG</a>
+      <a href="https://www.instagram.com/hausofk.live/">Haus of K IG</a>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    Sensitive Room: Haus of K · Volume I · Chapter 01 Pilot Playbook · Internal working doc, Draft v1, 2026-06-18 · Sensitive Ones Agency × Nurilounge · Referenced contracts are draft templates pending counsel. Confidential, do not distribute outside the team.
+  </div>
+</div>
+</body>
+</html>
