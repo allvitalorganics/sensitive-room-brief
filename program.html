@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensitive Room: Haus of K · Chapter 01 · Program</title>
+<style>
+:root{
+  --green:#12713A;--green-deep:#0D572C;--ink:#000;--paper:#fff;
+  --muted:rgba(0,0,0,.58);--faint:rgba(0,0,0,.42);--line:rgba(0,0,0,.12);
+  --soft:#f6f7f6;--soft-line:rgba(0,0,0,.08);
+  --disp:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:#e9eae9;line-height:1.5;
+  padding:40px 20px;display:flex;justify-content:center}
+.page{width:100%;max-width:760px;background:var(--paper);border-radius:20px;overflow:hidden;
+  box-shadow:0 24px 70px rgba(0,0,0,.14)}
+
+/* header */
+.head{position:relative;padding:64px 56px 52px;border-bottom:2px solid var(--ink);overflow:hidden}
+.grid{position:absolute;inset:0;background-size:48px 48px;
+  background-image:linear-gradient(rgba(0,0,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.03) 1px,transparent 1px);
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 30% 30%,#000 50%,transparent 100%);
+          mask-image:radial-gradient(ellipse 90% 80% at 30% 30%,#000 50%,transparent 100%)}
+.eyebrow{position:relative;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--green);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--green)}
+.h1{position:relative;font-family:var(--disp);font-weight:600;font-size:54px;line-height:.98;
+  letter-spacing:-.03em;margin-top:26px}
+.uw{position:relative;display:inline-block;color:var(--green)}
+.uw::after{content:"";position:absolute;left:-1%;right:-1%;bottom:-8px;height:14px;
+  background:no-repeat center/100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 13' preserveAspectRatio='none'%3E%3Cpath d='M3 9 C 55 3 145 3 197 7' fill='none' stroke='%2312713A' stroke-width='3.4' stroke-linecap='round'/%3E%3C/svg%3E")}
+.lede{position:relative;font-size:19px;color:var(--muted);margin-top:28px;max-width:560px}
+.lede b{color:var(--ink);font-weight:600}
+.facts{position:relative;display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.fact{font-size:14px;font-weight:600;padding:11px 18px;border-radius:100px;border:1.5px solid var(--ink)}
+.fact.g{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* section scaffolding */
+.body{padding:52px 56px 12px}
+.sec{padding-bottom:48px}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);
+  display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.kicker::before{content:"";width:28px;height:2px;background:var(--green)}
+.sec h2{font-family:var(--disp);font-weight:600;font-size:28px;letter-spacing:-.02em;margin-bottom:6px}
+
+/* timeline */
+.timeline{position:relative;margin-top:8px;padding-left:30px}
+.timeline::before{content:"";position:absolute;left:6px;top:8px;bottom:14px;width:2px;background:var(--line)}
+.slot{position:relative;padding:0 0 26px}
+.slot:last-child{padding-bottom:0}
+.slot::before{content:"";position:absolute;left:-30px;top:5px;width:14px;height:14px;border-radius:50%;
+  background:var(--paper);border:3px solid var(--green)}
+.slot.party::before{background:var(--green)}
+.time{font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:-.01em;color:var(--green)}
+.slot h3{font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.01em;margin:3px 0 4px}
+.slot p{font-size:15px;color:var(--muted);max-width:540px}
+.slot.party{margin-top:8px}
+.slot.party .wrap{background:var(--soft);border:1px solid var(--soft-line);border-radius:14px;
+  padding:18px 20px;margin-left:-4px}
+.slot.party h3{margin-top:0}
+
+/* creator do-list */
+.do{background:var(--soft);border:1px solid var(--soft-line);border-radius:16px;padding:30px 30px 12px}
+.do .lead{font-size:16px;color:var(--muted);margin-bottom:22px;max-width:560px}
+.do .lead b{color:var(--ink);font-weight:600}
+.steps{list-style:none;display:grid;gap:18px}
+.step{display:flex;gap:16px;align-items:flex-start;padding-bottom:18px;border-bottom:1px solid var(--soft-line)}
+.step:last-child{border-bottom:none;padding-bottom:0}
+.num{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;
+  font-family:var(--disp);font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:center}
+.step .txt b{font-weight:600}
+.step .txt{font-size:15.5px;line-height:1.5}
+.step .txt span{display:block;color:var(--muted);font-size:14px;margin-top:3px}
+.tagline-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tag{font-size:13px;font-weight:600;padding:6px 13px;border-radius:100px;background:var(--paper);
+  border:1px solid var(--line)}
+.tag.g{background:var(--green);color:#fff;border-color:var(--green)}
+.note{font-size:14px;color:var(--faint);margin-top:18px}
+
+/* footer */
+.foot{background:var(--green);color:#fff;padding:42px 56px;margin-top:8px}
+.foot .host{font-family:var(--disp);font-weight:600;font-size:22px;letter-spacing:-.01em;
+  display:flex;align-items:center;gap:12px}
+.foot .host .dot{width:11px;height:11px;border-radius:50%;background:#fff}
+.foot .org{font-size:15px;opacity:.86;margin-top:14px;line-height:1.6}
+.foot .handle{font-family:var(--disp);font-weight:600;font-size:18px;margin-top:18px}
+.foot .handle span{opacity:.78;font-weight:500}
+
+@media (max-width:600px){
+  body{padding:16px 0}
+  .page{border-radius:0}
+  .head{padding:44px 26px 38px}
+  .h1{font-size:40px}
+  .lede{font-size:17px}
+  .body{padding:40px 26px 4px}
+  .do{padding:24px 22px 8px}
+  .foot{padding:34px 26px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="head">
+    <div class="grid"></div>
+    <div class="eyebrow">Sensitive Room: Haus of K · Chapter 01</div>
+    <h1 class="h1">The program<br>for the <span class="uw">night.</span></h1>
+    <p class="lede">A <b>free, brand-sponsored K-beauty workshop</b> for rising creators: network, deals, knowledge. Then stay for the World Cup watch party.</p>
+    <div class="facts">
+      <span class="fact g">Thursday, June 25, 2026</span>
+      <span class="fact">7PM</span>
+      <span class="fact">Haus of K · Brooklyn</span>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <!-- TIMELINE -->
+    <section class="sec">
+      <div class="kicker">Run of the night</div>
+      <h2>Timeline</h2>
+      <div class="timeline">
+
+        <div class="slot">
+          <div class="time">7:00</div>
+          <h3>Doors and open</h3>
+          <p>Check in, grab a seat, settle in. We start right on time, so aim to arrive a few minutes early.</p>
+        </div>
+
+        <div class="slot">
+          <div class="time">7:08</div>
+          <h3>Brand intros</h3>
+          <p>Each sponsoring brand gives a 2-minute intro so you know who is in the room and what they are about.</p>
+        </div>
+
+        <div class="slot">
+          <div class="time">7:16</div>
+          <h3>The talk · with Daesung Seo</h3>
+          <p>The core session: how to break into K-beauty as a creator, what brands actually look for, and how to turn a first collab into a real partnership.</p>
+        </div>
+
+        <div class="slot">
+          <div class="time">7:37</div>
+          <h3>Q&amp;A and brand assignments</h3>
+          <p>Open questions, then Sensitive Room assigns which sponsoring brand or brands you will create for, balanced so every brand gets fair coverage.</p>
+        </div>
+
+        <div class="slot">
+          <div class="time">~8:00</div>
+          <h3>Networking</h3>
+          <p>Meet the brands, meet the room, and connect with the people you will be working with.</p>
+        </div>
+
+        <div class="slot party">
+          <div class="wrap">
+            <div class="time">10:00</div>
+            <h3>World Cup watch party</h3>
+            <p>Stay for the USA match (kickoff TBC) with food and drinks. Same night, more time together, more to film.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WHAT YOU'LL DO -->
+    <section class="sec">
+      <div class="kicker">Your part</div>
+      <h2>What you will do as a creator</h2>
+      <div class="do">
+        <p class="lead">Simple and clear: <b>one organic video per sponsoring brand, up to three total.</b> Sensitive Room tells you which brand or brands you cover, so you always know exactly what to make.</p>
+        <ul class="steps">
+
+          <li class="step">
+            <div class="num">1</div>
+            <div class="txt"><b>Make one video per sponsoring brand, capped at three.</b>
+              <span>One brand: one video. Two brands: two videos. Three or more: Sensitive Room picks three brands for you, one video each.</span>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">2</div>
+            <div class="txt"><b>Post on time.</b>
+              <span>Your first video goes live within 14 days of the workshop, and all of your videos within 30 days.</span>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">3</div>
+            <div class="txt"><b>Tag and disclose on every video.</b>
+              <div class="tagline-row">
+                <span class="tag">@ the brand handle</span>
+                <span class="tag g">@sensitiveones.agency</span>
+                <span class="tag">#ad</span>
+              </div>
+            </div>
+          </li>
+
+          <li class="step">
+            <div class="num">4</div>
+            <div class="txt"><b>Deals after are priority, not guaranteed.</b>
+              <span>Cohort creators are first in line for the sponsoring brands. Any deal that comes from it is booked through Sensitive Room.</span>
+            </div>
+          </li>
+
+        </ul>
+        <p class="note">Questions on the night? Just ask the Sensitive Room team or Daesung.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="host"><span class="dot"></span> Hosted by Daesung Seo</div>
+    <div class="org">Sensitive Ones Agency &times; Nurilounge &times; Haus of K</div>
+    <div class="handle">@sensitiveones.agency <span>· with @hausofk.live · @nurilounge.official</span></div>
+  </footer>
+
+</div>
+</body>
+</html>
